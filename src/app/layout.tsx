@@ -26,8 +26,13 @@ const themeScript = `(function(){try{var t=localStorage.getItem('aurelia-theme')
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body>
+      <head>
+        <title>AURELIA — Modern Fashion, Considered</title>
+        <meta name="description" content={siteConfig.description} />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+      </head>
+      <body>
         <ToastProvider>{children}</ToastProvider>
       </body>
     </html>
