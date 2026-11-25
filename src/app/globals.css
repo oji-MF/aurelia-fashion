@@ -1,0 +1,74 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-sans: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-display: "Didot", "Bodoni MT", "Playfair Display", Georgia, serif;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: #faf8f5;
+  color: #14110f;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection { background: #b4533a; color: #fff; }
+
+:focus-visible {
+  outline: 2px solid #b4533a;
+  outline-offset: 3px;
+}
+
+.font-display { font-family: var(--font-display); letter-spacing: -0.015em; }
+
+@layer components {
+  .input {
+    @apply w-full border border-ink/15 bg-white px-4 py-3 text-sm outline-none transition-colors focus:border-accent placeholder:text-stone/70;
+  }
+  .label {
+    @apply mb-2 block text-xs font-medium;
+  }
+}
+
+.eyebrow {
+  font-size: 0.6875rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+.skeleton {
+  position: relative;
+  overflow: hidden;
+  background: #ece7df;
+}
+.skeleton::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.55), transparent);
+  animation: shimmer 1.4s infinite;
+}
+@keyframes shimmer { 100% { transform: translateX(100%); } }
+
+.progress-track { height: 3px; background: #e7e1d8; }
+.progress-fill { height: 100%; background: #b4533a; transition: width 0.4s ease; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
