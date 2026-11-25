@@ -40,6 +40,7 @@ export function Header({
   const [query, setQuery] = useState("");
   const [suggestions, setSuggestions] = useState<Suggestion[]>([]);
   const [searching, setSearching] = useState(false);
+  const [recentSearches, setRecentSearches] = useState<string[]>([]);
   const [promoOpen, setPromoOpen] = useState(true);
   const searchRef = useRef<HTMLDivElement>(null);
 
@@ -48,6 +49,26 @@ export function Header({
     setActiveMega(null);
     setSearchOpen(false);
   }, [pathname]);
+
+  useEffect(() => {
+    try {
+      setRecentSearches(JSON.parse(localStorage.getItem("aurelia_searches") || "[]"));
+    } catch {
+      // ignore
+    }
+  }, []);
+
+  function rememberSearch(value: string) {
+    const clean = value.trim();
+    if (clean.length < 2) return;
+    const next = [clean, ...recentSearches.filter((v) => v.toLowerCase() !== clean.toLowerCase())].slice(0, 6);
+    setRecentSearches(next);
+    try {
+      localStorage.setItem("aurelia_searches", JSON.stringify(next));
+    } catch {
+      // ignore
+    }
+  }
 
   useEffect(() => {
     if (query.trim().length < 2) {
@@ -147,6 +168,7 @@ export function Header({
                       autoFocus
                       value={query}
                       onChange={(e) => setQuery(e.target.value)}
+                      onKeyDown={(e) => { if (e.key === "Enter") rememberSearch(query); }}
                       placeholder="Search products, brands, SKU..."
                       className="w-full bg-transparent text-sm outline-none placeholder:text-stone/70"
                     />
@@ -175,6 +197,18 @@ export function Header({
                       <p className="py-4 text-center text-xs text-stone">No matches. Try a different search.</p>
                     ) : (
                       <div className="py-2">
+                        {recentSearches.length > 0 && (
+                          <>
+                            <p className="eyebrow mb-2 text-stone">Recent searches</p>
+                            <div className="mb-4 flex flex-wrap gap-2">
+                              {recentSearches.map((term) => (
+                                <button key={term} onClick={() => setQuery(term)} className="rounded-full border border-line/20 px-3 py-1.5 text-xs hover:border-accent">
+                                  {term}
+                                </button>
+                              ))}
+                            </div>
+                          </>
+                        )}
                         <p className="eyebrow mb-2 text-stone">Popular searches</p>
                         <div className="flex flex-wrap gap-2">
                           {["Linen shirt", "Midi dress", "Sneakers", "Leather bag"].map((term) => (
@@ -193,7 +227,7 @@ export function Header({
                   {query.length >= 2 && (
                     <Link
                       href={`/search?q=${encodeURIComponent(query)}`}
-                      onClick={() => setSearchOpen(false)}
+                      onClick={() => { rememberSearch(query); setSearchOpen(false); }}
                       className="mt-3 flex items-center justify-center gap-2 border-t border-line/10 pt-3 text-xs font-medium hover:text-accent"
                     >
                       View all results <ArrowRight className="h-3.5 w-3.5" />

@@ -6,6 +6,7 @@ import { hashPassword, verifyPassword } from "./password";
 import { clearSession, getSession, setSession } from "./session";
 import type { Role, User } from "@/lib/types";
 import { randomUUID } from "node:crypto";
+import { mergeGuestCart } from "@/lib/data/cart";
 
 export { getSession, clearSession };
 
@@ -33,6 +34,7 @@ export async function registerUser(input: {
         emailVerified: false,
         createdAt: new Date().toISOString(),
       };
+      await mergeGuestCart(userId);
       await setSession({ ...user, phone: session.secret } as User);
       return { ok: true, user };
     } catch (error) {
@@ -55,6 +57,7 @@ export async function registerUser(input: {
   mutateStore((store) => {
     store.users.push({ ...user, passwordHash: hashPassword(input.password) });
   });
+  await mergeGuestCart(user.id);
   await setSession(user);
   return { ok: true, user };
 }
@@ -80,6 +83,7 @@ export async function loginUser(input: {
         emailVerified: accountUser.emailVerification,
         createdAt: accountUser.$createdAt,
       };
+      await mergeGuestCart(accountUser.$id);
       await setSession({ ...user, phone: session.secret } as User);
       return { ok: true, user };
     } catch (error) {
@@ -92,6 +96,7 @@ export async function loginUser(input: {
     return { ok: false, error: "Invalid email or password." };
   }
   const { passwordHash: _ignored, ...user } = stored;
+  await mergeGuestCart(user.id);
   await setSession(user);
   return { ok: true, user };
 }

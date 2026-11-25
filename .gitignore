@@ -11,6 +11,8 @@ next-env.d.ts
 npm-debug.log*
 coverage
 .vercel
+test-results
+playwright-report
 
 .vercel
 .env*

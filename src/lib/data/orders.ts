@@ -122,8 +122,37 @@ export async function calculatePricing(input: {
   }
 
   const { coupon, error } = await resolveCoupon(input.couponCode, subtotal, input.userId);
+  let couponError = error;
+  if (coupon && !couponError) {
+    const restrictedByProduct = coupon.productIds.length > 0;
+    const restrictedByCategory = coupon.categoryIds.length > 0;
+    if (restrictedByProduct || restrictedByCategory) {
+      const allowedCategories = new Set(
+        coupon.categoryIds.flatMap((id) => {
+          const category = getStore().categories.find(
+            (c) => c.id === id || c.slug === id,
+          );
+          return category ? [category.id] : [];
+        }),
+      );
+      let eligibleCount = 0;
+      for (const line of lines) {
+        const product = await getProductById(line.productId);
+        const byProduct = coupon.productIds.includes(line.productId);
+        const byCategory = product ? allowedCategories.has(product.categoryId) : false;
+        if ((!restrictedByProduct || byProduct) && (!restrictedByCategory || byCategory)) {
+          eligibleCount += 1;
+        }
+      }
+      if (eligibleCount === 0) {
+        couponError = "This discount code does not apply to any item in your bag.";
+      } else if (eligibleCount !== lines.length) {
+        couponError = "This code only applies to selected items. Remove other items to use it.";
+      }
+    }
+  }
   let discount = 0;
-  if (coupon && !error) {
+  if (coupon && !couponError) {
     if (coupon.type === "percentage") discount = Math.round((subtotal * coupon.value) / 100);
     else if (coupon.type === "fixed") discount = Math.min(coupon.value, subtotal);
   }
@@ -137,7 +166,7 @@ export async function calculatePricing(input: {
     shipping,
     total: Math.max(0, subtotal - discount + shipping),
     coupon,
-    couponError: problems[0] || error,
+    couponError: problems[0] || couponError,
   };
 }
 

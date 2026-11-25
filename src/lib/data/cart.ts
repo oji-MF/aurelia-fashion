@@ -1,7 +1,10 @@
 import { cookies } from "next/headers";
 import { getProductById } from "./catalogue";
 import { mutateStore } from "@/lib/demo/store";
-import { isAppwriteConfigured } from "@/lib/config";
+import { appwriteConfig, isAppwriteConfigured } from "@/lib/config";
+import { createAdminClient } from "@/lib/appwrite/server";
+import { getStore } from "@/lib/demo/store";
+import { ID } from "node-appwrite";
 import type { Cart, CartItem } from "@/lib/types";
 
 export const CART_COOKIE = "aurelia_cart";
@@ -103,10 +106,78 @@ export async function clearCart() {
   await writeStored([]);
 }
 
+/** Persisted cart for a signed-in account. */
+export async function getAccountCart(userId: string): Promise<StoredItem[]> {
+  if (!isAppwriteConfigured) return getStore().carts?.[userId] ?? [];
+  try {
+    const { databases } = createAdminClient();
+    const result = await databases.listDocuments(appwriteConfig.databaseId, appwriteConfig.collections.carts, []);
+    const doc = result.documents.find((d) => String((d as Record<string, unknown>).userId) === userId);
+    if (!doc) return [];
+    const value = (doc as Record<string, unknown>).items;
+    return typeof value === "string" ? JSON.parse(value) : Array.isArray(value) ? value : [];
+  } catch {
+    return [];
+  }
+}
+
+async function saveAccountCart(userId: string, items: StoredItem[]) {
+  if (!isAppwriteConfigured) {
+    mutateStore((store) => {
+      if (!store.carts) store.carts = {};
+      store.carts[userId] = items;
+    });
+    return;
+  }
+  try {
+    const { databases } = createAdminClient();
+    const result = await databases.listDocuments(appwriteConfig.databaseId, appwriteConfig.collections.carts, []);
+    const doc = result.documents.find((d) => String((d as Record<string, unknown>).userId) === userId);
+    const payload = { userId, items: JSON.stringify(items) };
+    if (doc) {
+      await databases.updateDocument(appwriteConfig.databaseId, appwriteConfig.collections.carts, doc.$id, payload);
+    } else {
+      await databases.createDocument(appwriteConfig.databaseId, appwriteConfig.collections.carts, ID.unique(), payload);
+    }
+  } catch {
+    // Non-critical: the cookie copy still holds the cart.
+  }
+}
+
+/**
+ * Called on sign-in/registration. Combines the guest cookie cart with the
+ * account cart by variant, capped at available stock, and merges wishlists so
+ * nothing is duplicated or lost.
+ */
 export async function mergeGuestCart(userId: string) {
-  if (isAppwriteConfigured) return; // Guest cookie already persists; account carts can be added here.
-  mutateStore((store) => {
-    if (!store.wishlists) store.wishlists = {};
-  });
-  void userId;
+  const guest = await readStored();
+  const account = await getAccountCart(userId);
+  const combined = new Map<string, StoredItem>();
+  for (const item of [...account, ...guest]) {
+    const existing = combined.get(item.variantId);
+    combined.set(item.variantId, {
+      ...item,
+      quantity: (existing?.quantity ?? 0) + item.quantity,
+    });
+  }
+
+  const merged: StoredItem[] = [];
+  for (const item of combined.values()) {
+    const product = await getProductById(item.productId);
+    const variant = product?.variants.find((v) => v.id === item.variantId);
+    if (!product || !variant || variant.stock < 1) continue;
+    merged.push({ ...item, quantity: Math.min(item.quantity, variant.stock) });
+  }
+
+  await writeStored(merged);
+  await saveAccountCart(userId, merged);
+
+  // Wishlist merge
+  const guestIds = await (await import("./wishlist")).getWishlistIds(null);
+  const accountIds = await (await import("./wishlist")).getWishlistIds(userId);
+  const allIds = Array.from(new Set([...accountIds, ...guestIds]));
+  if (allIds.length !== accountIds.length) {
+    await (await import("./wishlist")).setWishlistForUser(userId, allIds);
+  }
+  return merged;
 }

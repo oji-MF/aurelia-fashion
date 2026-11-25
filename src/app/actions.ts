@@ -42,7 +42,8 @@ import {
   updateUserRoles,
 } from "@/lib/data/admin";
 import { sendOrderConfirmation, sendPaymentConfirmation, sendWelcomeEmail } from "@/lib/email";
-import type { Address, OrderStatus, Role } from "@/lib/types";
+import { createReturnRequest, updateReturnStatus } from "@/lib/data/returns";
+import type { Address, OrderStatus, ReturnRequest, Role } from "@/lib/types";
 
 export type ActionState = { ok: boolean; message: string; data?: unknown };
 const fail = (message: string): ActionState => ({ ok: false, message });
@@ -263,6 +264,35 @@ export async function subscribeAction(_prev: ActionState, formData: FormData): P
   const result = await subscribe(parsed.data.email);
   if (!result.ok) return fail(result.error || "Could not subscribe.");
   return success("You're on the list. Welcome to AURELIA.");
+}
+
+// ---------------------------------------------------------------- returns
+export async function returnRequestAction(
+  _prev: ActionState,
+  formData: FormData,
+): Promise<ActionState> {
+  const user = await getCurrentUser();
+  if (!user) return fail("Please sign in to request a return.");
+  const result = await createReturnRequest({
+    orderId: String(formData.get("orderId") || ""),
+    productId: String(formData.get("productId") || ""),
+    reason: String(formData.get("reason") || ""),
+    details: String(formData.get("details") || "").trim(),
+    userId: user.id,
+  });
+  if (!result.ok) return fail(result.error || "Could not submit return.");
+  revalidatePath("/account/returns");
+  return success("Return request submitted. Our team will review it shortly.");
+}
+
+export async function updateReturnAction(id: string, status: ReturnRequest["status"]): Promise<ActionState> {
+  const admin = await requireAdmin();
+  if (!admin) return fail("Unauthorized.");
+  await updateReturnStatus(id, status);
+  await audit({ actorId: admin.id, actorEmail: admin.email, action: "status", entity: "return", entityId: id, details: status });
+  revalidatePath("/admin/returns");
+  revalidatePath("/account/returns");
+  return success("Return status updated.");
 }
 
 // ---------------------------------------------------------------- admin

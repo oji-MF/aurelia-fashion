@@ -293,6 +293,20 @@ export interface StoreSettings {
   terms: string;
 }
 
+export interface ReturnRequest {
+  id: string;
+  orderId: string;
+  orderNumber: string;
+  userId: string;
+  productId: string;
+  productName: string;
+  reason: string;
+  details: string;
+  status: "pending" | "approved" | "rejected" | "completed";
+  createdAt: string;
+  updatedAt: string;
+}
+
 export interface AuditLog {
   id: string;
   actorId: string;

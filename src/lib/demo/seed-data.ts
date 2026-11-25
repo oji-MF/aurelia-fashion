@@ -31,12 +31,14 @@ export interface DemoStore {
   orders: Order[];
   addresses: Address[];
   wishlists: Record<string, string[]>;
+  carts: Record<string, { productId: string; variantId: string; quantity: number }[]>;
   coupons: Coupon[];
   newsletter: { email: string; createdAt: string }[];
   settings: StoreSettings;
   content: Record<string, unknown>;
   audit: AuditLog[];
   inventory: InventoryMovement[];
+  returns: import("@/lib/types").ReturnRequest[];
   webhooks: unknown[];
   shippingRules: ShippingRule[];
 }
@@ -550,12 +552,14 @@ export function createSeedData(): DemoStore {
     orders: [],
     addresses: [],
     wishlists: {},
+    carts: {},
     coupons,
     newsletter: [],
     settings,
     content,
     audit: [],
     inventory: [],
+    returns: [],
     webhooks: [],
     shippingRules,
   };

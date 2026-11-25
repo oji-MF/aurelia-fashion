@@ -1,7 +1,10 @@
+import { rateLimit } from "@/lib/security/rate-limit";
 import { NextResponse } from "next/server";
 import { contactSchema } from "@/lib/validations";
 
 export async function POST(request: Request) {
+  const limited = rateLimit(request, "contact", 30);
+  if (limited) return limited;
   const body = await request.json().catch(() => ({}));
   const parsed = contactSchema.safeParse(body);
   if (!parsed.success) return NextResponse.json({ error: parsed.error.issues[0].message }, { status: 400 });

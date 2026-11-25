@@ -42,6 +42,9 @@ Change these before using the platform publicly.
 - Customer accounts: registration, login, password reset, profile, addresses, order history, tracking, reviews and wishlist.
 - Full light/dark theme with system detection and a persisted toggle in the storefront and admin.
 - Quick-view modal, size guide, recently-viewed rail, sticky mobile add-to-bag bar and country-aware delivery estimates.
+- Guest cart and wishlist merge into the account on sign-in (quantities combined, capped at stock, no duplicates).
+- Validated image uploads (magic-byte checks, 5 MB limit) to Appwrite Storage or a local demo store, with an admin dropzone.
+- Customer returns requests with admin moderation, rate-limited public APIs, recent-search history and breadcrumb structured data.
 - Responsive layouts, focus states, reduced-motion support and semantic markup.
 
 ### Admin (`/admin`)
@@ -81,7 +84,8 @@ The app automatically stops using the demo store when both the project ID and AP
 | `npm run start` | Serve production build |
 | `npm run typecheck` | TypeScript check |
 | `npm run lint` | ESLint |
-| `npm run test` | Vitest suite |
+| `npm run test` | Vitest unit suite |
+| `npm run test:e2e` | Playwright desktop + mobile E2E suite |
 | `npm run appwrite:setup` | Create Appwrite schema |
 | `npm run appwrite:seed` | Load demo data into Appwrite |
 

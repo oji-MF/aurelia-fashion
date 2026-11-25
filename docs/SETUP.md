@@ -35,6 +35,9 @@ NEXT_PUBLIC_SITE_URL=http://localhost:3000
 SESSION_SECRET=generate-with-openssl-rand-base64-32
 ```
 
+### Storage and uploads
+Set `APPWRITE_STORAGE_BUCKET_ID=product_images` to store admin uploads in Appwrite. `npm run appwrite:setup` creates the bucket with public read access and a 5 MB limit. Without it, uploads are written to a local demo directory and served through `/api/uploads/[...name]`.
+
 ### Create the schema and seed data
 ```bash
 npm run appwrite:setup

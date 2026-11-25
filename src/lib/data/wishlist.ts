@@ -59,31 +59,36 @@ export async function getWishlist(userId?: string | null): Promise<Wishlist> {
   };
 }
 
+export async function setWishlistForUser(userId: string, ids: string[]) {
+  if (!isAppwriteConfigured) {
+    mutateStore((store) => {
+      store.wishlists[userId] = ids;
+    });
+    return;
+  }
+  try {
+    const { databases } = createAdminClient();
+    await databases.upsertDocument(
+      appwriteConfig.databaseId,
+      appwriteConfig.collections.wishlists,
+      userId.replace(/[^a-zA-Z0-9]/g, "_").slice(0, 36),
+      { userId, productIds: JSON.stringify(ids) },
+    );
+  } catch {
+    // ignore
+  }
+}
+
 export async function toggleWishlist(productId: string, userId?: string | null) {
   const ids = await getWishlistIds(userId);
   const next = ids.includes(productId)
     ? ids.filter((id) => id !== productId)
     : [...ids, productId];
 
-  if (userId && !isAppwriteConfigured) {
-    mutateStore((store) => {
-      store.wishlists[userId] = next;
-    });
-  } else if (!userId) {
+  if (!userId) {
     await setGuestIds(next);
   } else {
-    // Appwrite: upsert by userId (document id derived from user).
-    try {
-      const { databases } = createAdminClient();
-      await databases.upsertDocument(
-        appwriteConfig.databaseId,
-        appwriteConfig.collections.wishlists,
-        userId.replace(/[^a-zA-Z0-9]/g, "_").slice(0, 36),
-        { userId, productIds: JSON.stringify(next) },
-      );
-    } catch {
-      await setGuestIds(next);
-    }
+    await setWishlistForUser(userId, next);
   }
   return next;
 }

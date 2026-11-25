@@ -71,8 +71,23 @@ export async function CataloguePage({
   const materials = unique(allProducts.items.map((p) => p.material).filter(Boolean));
   const styles = unique(allProducts.items.map((p) => p.style).filter(Boolean));
 
+  const breadcrumbLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: "/" },
+      ...breadcrumbs.map((crumb, i) => ({
+        "@type": "ListItem",
+        position: i + 2,
+        name: crumb.label,
+        item: crumb.href || "",
+      })),
+    ],
+  };
+
   return (
     <div className="mx-auto max-w-[1600px] px-4 py-10 sm:px-6 lg:px-10 lg:py-14">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
       <nav className="mb-8 flex items-center gap-1.5 text-[11px] text-stone" aria-label="Breadcrumb">
         <Link href="/" className="hover:text-accent">Home</Link>
         {breadcrumbs.map((crumb, i) => (

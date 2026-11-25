@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
-import { UserRound, Package, MapPin, Heart, Star, LogOut, Settings } from "lucide-react";
+import { UserRound, Package, MapPin, Heart, Star, LogOut, Settings, RotateCcw } from "lucide-react";
 import { logoutAction } from "@/app/actions";
 import { getCurrentUser } from "@/lib/auth";
 
@@ -12,6 +12,7 @@ const links = [
   { href: "/account/addresses", label: "Addresses", icon: MapPin },
   { href: "/account/wishlist", label: "Wishlist", icon: Heart },
   { href: "/account/reviews", label: "Reviews", icon: Star },
+  { href: "/account/returns", label: "Returns", icon: RotateCcw },
   { href: "/account/profile", label: "Profile", icon: Settings },
 ];
 

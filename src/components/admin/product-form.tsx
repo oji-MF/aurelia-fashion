@@ -1,9 +1,10 @@
 "use client";
 
-import { useActionState, useEffect } from "react";
+import { useActionState, useEffect, useRef } from "react";
 import { X } from "lucide-react";
 import { saveProductAction, type ActionState } from "@/app/actions";
 import { useToast } from "@/components/ui/toast";
+import { ImageUploader } from "./image-uploader";
 import type { Brand, Category, Product } from "@/lib/types";
 
 const initial: ActionState = { ok: false, message: "" };
@@ -20,6 +21,7 @@ export function ProductForm({
   onClose: () => void;
 }) {
   const [state, action, pending] = useActionState(saveProductAction, initial);
+  const imageRef = useRef<HTMLTextAreaElement>(null);
   const { toast } = useToast();
 
   useEffect(() => {
@@ -48,7 +50,26 @@ export function ProductForm({
             <label className="block"><span className="label">Gender</span><select name="gender" defaultValue={product?.gender || "unisex"} className="input"><option value="women">Women</option><option value="men">Men</option><option value="unisex">Unisex</option></select></label>
             <label className="block"><span className="label">Style</span><input name="style" defaultValue={product?.style} className="input" placeholder="Everyday, Workwear…" /></label>
           </div>
-          <label className="block"><span className="label">Image URLs (one per line)</span><textarea name="images" rows={3} required defaultValue={product?.images.join("\n") || "https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=1000&q=80"} className="input resize-y" /></label>
+          <div>
+            <span className="label">Product images</span>
+            <ImageUploader
+              onUploaded={(urls) => {
+                const field = imageRef.current;
+                if (!field) return;
+                const existing = field.value.trim();
+                field.value = [existing, ...urls].filter(Boolean).join("\n");
+              }}
+            />
+            <textarea
+              ref={imageRef}
+              name="images"
+              rows={3}
+              required
+              defaultValue={product?.images.join("\n") || "https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=1000&q=80"}
+              className="input resize-y"
+              placeholder="One image URL per line"
+            />
+          </div>
           <label className="block"><span className="label">Colours (JSON array of name + hex objects)</span><textarea name="colours" rows={3} required defaultValue={JSON.stringify(product?.colours || [{ name: "Black", hex: "#161616" }])} className="input resize-y" /></label>
           <label className="block"><span className="label">Sizes (comma separated)</span><input name="sizes" required defaultValue={product?.sizes.join(", ") || "XS, S, M, L, XL"} className="input" /></label>
           <div className="grid gap-5 sm:grid-cols-2">

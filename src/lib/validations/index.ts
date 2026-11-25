@@ -64,7 +64,7 @@ export const productSchema = z.object({
   categoryId: z.string().min(1),
   price: z.number().int().positive(),
   comparePrice: z.number().int().nullable().optional(),
-  images: z.array(z.string().url()).min(1),
+  images: z.array(z.union([z.url(), z.string().startsWith("/")])).min(1),
   colours: z.array(z.object({ name: z.string(), hex: z.string() })).min(1),
   sizes: z.array(z.string()).min(1),
   material: z.string().default(""),

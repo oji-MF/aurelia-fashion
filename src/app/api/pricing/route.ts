@@ -1,3 +1,4 @@
+import { rateLimit } from "@/lib/security/rate-limit";
 import { NextResponse } from "next/server";
 import { z } from "zod";
 import { calculatePricing } from "@/lib/data/orders";
@@ -11,6 +12,8 @@ const schema = z.object({
 });
 
 export async function POST(request: Request) {
+  const limited = rateLimit(request, "pricing", 30);
+  if (limited) return limited;
   const body = await request.json().catch(() => ({}));
   const parsed = schema.safeParse(body);
   if (!parsed.success) return NextResponse.json({ error: "Invalid request." }, { status: 400 });

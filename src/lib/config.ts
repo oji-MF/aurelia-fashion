@@ -14,6 +14,7 @@ export const appwriteConfig = {
     orders: env.APPWRITE_COLLECTION_ORDERS || "orders",
     addresses: env.APPWRITE_COLLECTION_ADDRESSES || "addresses",
     wishlists: env.APPWRITE_COLLECTION_WISHLISTS || "wishlists",
+    carts: env.APPWRITE_COLLECTION_CARTS || "carts",
     coupons: env.APPWRITE_COLLECTION_COUPONS || "coupons",
     redemptions: env.APPWRITE_COLLECTION_REDEMPTIONS || "coupon_redemptions",
     newsletter: env.APPWRITE_COLLECTION_NEWSLETTER || "newsletter_subscribers",
@@ -22,6 +23,7 @@ export const appwriteConfig = {
     audit: env.APPWRITE_COLLECTION_AUDIT || "audit_logs",
     inventory: env.APPWRITE_COLLECTION_INVENTORY || "inventory_movements",
     webhooks: env.APPWRITE_COLLECTION_WEBHOOKS || "payment_webhook_events",
+    returns: env.APPWRITE_COLLECTION_RETURNS || "returns",
   },
 };
 

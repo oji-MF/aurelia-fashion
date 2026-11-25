@@ -57,9 +57,22 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
     },
   };
 
+  const breadcrumbLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: siteConfig.url },
+      ...(product.category
+        ? [{ "@type": "ListItem", position: 2, name: product.category.name, item: `${siteConfig.url}/c/${product.category.slug}` }]
+        : []),
+      { "@type": "ListItem", position: product.category ? 3 : 2, name: product.name, item: `${siteConfig.url}/product/${product.slug}` },
+    ],
+  };
+
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
       <ProductDetail
         product={product}
         reviews={reviews}

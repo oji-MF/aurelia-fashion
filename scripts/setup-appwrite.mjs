@@ -3,7 +3,7 @@
  * Requires NEXT_PUBLIC_APPWRITE_PROJECT_ID and APPWRITE_API_KEY in .env.local.
  * Safe to re-run: existing collections/attributes are skipped.
  */
-import { Client, Databases, Users, ID, Permission, Role } from "node-appwrite";
+import { Client, Databases, Users, Storage, ID, Permission, Role } from "node-appwrite";
 import { loadEnv } from "./env.mjs";
 
 loadEnv();
@@ -21,6 +21,7 @@ if (!projectId || !apiKey) {
 const client = new Client().setEndpoint(endpoint).setProject(projectId).setKey(apiKey);
 const databases = new Databases(client);
 const users = new Users(client);
+const storage = new Storage(client);
 
 const C = {
   products: process.env.APPWRITE_COLLECTION_PRODUCTS || "products",
@@ -31,6 +32,8 @@ const C = {
   orders: process.env.APPWRITE_COLLECTION_ORDERS || "orders",
   addresses: process.env.APPWRITE_COLLECTION_ADDRESSES || "addresses",
   wishlists: process.env.APPWRITE_COLLECTION_WISHLISTS || "wishlists",
+  carts: process.env.APPWRITE_COLLECTION_CARTS || "carts",
+  returns: process.env.APPWRITE_COLLECTION_RETURNS || "returns",
   coupons: process.env.APPWRITE_COLLECTION_COUPONS || "coupons",
   redemptions: process.env.APPWRITE_COLLECTION_REDEMPTIONS || "coupon_redemptions",
   newsletter: process.env.APPWRITE_COLLECTION_NEWSLETTER || "newsletter_subscribers",
@@ -93,6 +96,9 @@ const definitions = [
   { id: C.wishlists, name: "Wishlists", public: false, attributes: {
     userId: STR(64), productIds: S(65535),
   }, indexes: [["idx_wish_user", "key", ["userId"]]] },
+  { id: C.carts, name: "Carts", public: false, attributes: {
+    userId: STR(64), items: S(65535),
+  }, indexes: [["idx_cart_user", "key", ["userId"]]] },
   { id: C.coupons, name: "Coupons", public: false, attributes: {
     code: STR(50), type: ENUM(["percentage", "fixed", "free_shipping"]), value: INT, minOrder: INT,
     usageLimit: INT, usedCount: INT, startAt: DT, endAt: DT, active: BOOL, firstOrderOnly: BOOL,
@@ -115,6 +121,11 @@ const definitions = [
   { id: C.webhooks, name: "Payment Webhook Events", public: false, attributes: {
     reference: STR(150), event: STR(100), at: DT, raw: S(65535),
   }, indexes: [["idx_webhook_ref", "unique", ["reference"]]] },
+  { id: C.returns, name: "Return Requests", public: false, attributes: {
+    orderId: STR(64), orderNumber: STR(100), userId: STR(64), productId: STR(64),
+    productName: STR(200), reason: STR(200), details: STR(65535),
+    status: ENUM(["pending", "approved", "rejected", "completed"]),
+  }, indexes: [["idx_return_user", "key", ["userId"]], ["idx_return_status", "key", ["status"]]] },
 ];
 
 async function ensureDatabase() {
@@ -188,6 +199,17 @@ async function createAdminUser() {
   await ensureDatabase();
   for (const def of definitions) await ensureCollection(def);
   await createAdminUser();
+
+  const bucketId = process.env.APPWRITE_STORAGE_BUCKET_ID || "product_images";
+  try {
+    await storage.getBucket(bucketId);
+    console.log(`  • Storage bucket ${bucketId} exists`);
+  } catch {
+    await storage.createBucket(bucketId, "Product Images", [
+      Permission.read(Role.any()),
+    ], true, 5 * 1024 * 1024, ["jpg", "jpeg", "png", "webp", "avif"]);
+    console.log(`  ✓ Created storage bucket ${bucketId}`);
+  }
   console.log("\nSetup complete. Next: npm run appwrite:seed");
 })().catch((error) => {
   console.error("Setup failed:", error);

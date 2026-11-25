@@ -1,8 +1,11 @@
+import { rateLimit } from "@/lib/security/rate-limit";
 import { NextResponse } from "next/server";
 import { searchSuggestions } from "@/lib/data/catalogue";
 import { z } from "zod";
 
 export async function GET(request: Request) {
+  const limited = rateLimit(request, "search", 30);
+  if (limited) return limited;
   const { searchParams } = new URL(request.url);
   const parsed = z.string().min(1).max(100).safeParse(searchParams.get("q") || "");
   if (!parsed.success) return NextResponse.json({ items: [] });

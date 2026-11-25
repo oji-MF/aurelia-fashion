@@ -1,3 +1,4 @@
+import { rateLimit } from "@/lib/security/rate-limit";
 import { NextResponse } from "next/server";
 import { z } from "zod";
 import { createSessionClient } from "@/lib/appwrite/server";
@@ -10,6 +11,8 @@ const schema = z.object({
 });
 
 export async function POST(request: Request) {
+  const limited = rateLimit(request, "confirm-reset", 30);
+  if (limited) return limited;
   const body = await request.json().catch(() => ({}));
   const parsed = schema.safeParse(body);
   if (!parsed.success) return NextResponse.json({ error: parsed.error.issues[0].message }, { status: 400 });

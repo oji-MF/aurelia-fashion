@@ -2,7 +2,7 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import {
   LayoutDashboard, Package, FolderTree, Tag, ShoppingCart, Boxes, Ticket,
-  Users, ShieldCheck, Home, BarChart3, Settings, Star, LogOut,
+  Users, ShieldCheck, Home, BarChart3, Settings, Star, LogOut, RotateCcw,
 } from "lucide-react";
 import { requireAdmin } from "@/lib/auth";
 import { logoutAction } from "@/app/actions";
@@ -20,6 +20,7 @@ const nav = [
   { label: "Promotions", href: "/admin/promotions", icon: Ticket },
   { label: "Customers", href: "/admin/customers", icon: Users },
   { label: "Reviews", href: "/admin/reviews", icon: Star },
+  { label: "Returns", href: "/admin/returns", icon: RotateCcw },
   { label: "Reports", href: "/admin/reports", icon: BarChart3 },
   { label: "Homepage", href: "/admin/content", icon: Home },
   { label: "Staff & roles", href: "/admin/staff", icon: ShieldCheck },
