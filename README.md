@@ -110,7 +110,20 @@ docs/                   # Setup and admin manuals
 
 ---
 
-## Deployment
+## Live deployment
+
+| Resource | URL |
+|---|---|
+| Production | https://aurelia-alpha-five.vercel.app |
+| GitHub | https://github.com/oji-MF/aurelia-fashion |
+| Vercel project | `prince-projects-projects/aurelia` |
+| CI | `.github/workflows/ci.yml` (typecheck, tests, build on push/PR) |
+
+The connected GitHub repository deploys `main` to production automatically and creates preview deployments for pull requests. `SESSION_SECRET`, `NEXT_PUBLIC_SITE_URL` and `NEXT_PUBLIC_STORE_NAME` are configured in Vercel.
+
+> The live site currently runs in **demo mode** with a writable `/tmp` store (serverless-safe). Because serverless instances are ephemeral, orders and demo state do not persist across separate instances. Add Appwrite credentials for durable production data.
+
+## Deployment setup (for your own accounts)
 
 The project is ready for Vercel:
 
