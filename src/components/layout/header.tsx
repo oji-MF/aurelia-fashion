@@ -310,7 +310,14 @@ export function Header({
           <button className="absolute inset-0 bg-black/40" onClick={() => setMobileOpen(false)} aria-label="Close menu" />
           <div className="relative h-full w-[86vw] max-w-sm overflow-y-auto bg-paper p-6 shadow-2xl">
             <div className="mb-8 flex items-center justify-between">
-              <span className="font-display text-xl tracking-[0.18em]">AURELIA</span>
+              <Link
+                href="/"
+                onClick={() => setMobileOpen(false)}
+                className="font-display text-xl tracking-[0.18em]"
+                aria-label="AURELIA home"
+              >
+                AURELIA
+              </Link>
               <button onClick={() => setMobileOpen(false)} aria-label="Close menu"><X className="h-5 w-5" /></button>
             </div>
             <nav className="space-y-1">

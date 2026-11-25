@@ -31,6 +31,18 @@ test.describe("AURELIA storefront", () => {
     await expect(page.getByText("Added to your bag.")).toBeVisible({ timeout: 15_000 });
   });
 
+  test("logo returns to the homepage from any page", async ({ page, isMobile }) => {
+    await page.goto("/women");
+    if (isMobile) {
+      await page.getByRole("button", { name: "Open menu" }).click();
+      await page.getByRole("link", { name: "AURELIA home" }).last().click();
+    } else {
+      await page.getByRole("link", { name: "AURELIA home" }).first().click();
+    }
+    await expect(page).toHaveURL(/\/$/);
+    await expect(page.getByRole("heading", { name: /A new language of style/ })).toBeVisible();
+  });
+
   test("admin area redirects unauthenticated visitors", async ({ page }) => {
     await page.goto("/admin");
     await expect(page).toHaveURL(/\/login/);

@@ -33,7 +33,7 @@ export function Footer({ settings }: { settings: StoreSettings }) {
       <div className="mx-auto max-w-[1600px] px-4 sm:px-6 lg:px-10">
         <div className="grid gap-12 border-b border-white/10 py-16 lg:grid-cols-[1.6fr_1fr_1fr_1fr_1.4fr]">
           <div>
-            <Link href="/" className="font-display text-2xl tracking-[0.18em]">AURELIA</Link>
+            <Link href="/" className="font-display text-2xl tracking-[0.18em]" aria-label="AURELIA home">AURELIA</Link>
             <p className="mt-5 max-w-xs text-sm leading-relaxed text-white/55">{settings.aboutText}</p>
             <div className="mt-6 flex gap-4">
               {[

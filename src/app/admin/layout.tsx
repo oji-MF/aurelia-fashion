@@ -36,7 +36,7 @@ export default async function AdminLayout({ children }: { children: React.ReactN
       <div className="lg:flex">
         <aside className="lg:sticky lg:top-0 lg:h-screen lg:w-64 lg:shrink-0 lg:overflow-y-auto border-r border-line/10 bg-surface">
           <div className="flex h-16 items-center justify-between border-b border-line/10 px-5">
-            <Link href="/" className="font-display text-lg tracking-[0.16em]">AURELIA</Link>
+            <Link href="/" className="font-display text-lg tracking-[0.16em]" aria-label="AURELIA home">AURELIA</Link>
             <span className="rounded-sm bg-accentSolid px-2 py-1 text-[9px] font-bold uppercase tracking-wider text-white">Admin</span>
           </div>
           <nav className="space-y-0.5 p-3">
