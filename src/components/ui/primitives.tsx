@@ -23,7 +23,7 @@ export function Button({
     size === "sm" && "px-4 py-2 text-xs",
     size === "md" && "px-6 py-3 text-sm",
     size === "lg" && "px-8 py-4 text-sm",
-    variant === "primary" && "bg-ink text-white hover:bg-accent",
+    variant === "primary" && "bg-ink text-white hover:bg-accentSolid",
     variant === "outline" && "border border-line/20 text-fg hover:border-line hover:bg-ink hover:text-white",
     variant === "ghost" && "text-fg hover:text-accent",
     variant === "light" && "bg-surface text-fg hover:bg-cream",
@@ -59,7 +59,7 @@ export function Badge({
       className={cn(
         "inline-flex items-center rounded-full px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider",
         tone === "neutral" && "bg-cream text-fg",
-        tone === "sale" && "bg-accent text-white",
+        tone === "sale" && "bg-accentSolid text-white",
         tone === "success" && "bg-success/10 text-success",
         tone === "warning" && "bg-amber-100 text-amber-800",
         className,

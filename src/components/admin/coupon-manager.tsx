@@ -12,7 +12,7 @@ export function CouponManager({ coupons }: { coupons: Coupon[] }) {
   const [editing, setEditing] = useState<Coupon | null | undefined>(undefined);
   return (
     <div>
-      <div className="mb-6 flex items-center justify-between"><div><h1 className="font-display text-3xl">Promotions</h1><p className="mt-1 text-sm text-stone">Discount codes and campaigns.</p></div><button onClick={() => setEditing(null)} className="flex items-center gap-2 bg-ink px-5 py-3 text-xs font-semibold uppercase tracking-wider text-white hover:bg-accent"><Plus className="h-4 w-4" /> New code</button></div>
+      <div className="mb-6 flex items-center justify-between"><div><h1 className="font-display text-3xl">Promotions</h1><p className="mt-1 text-sm text-stone">Discount codes and campaigns.</p></div><button onClick={() => setEditing(null)} className="flex items-center gap-2 bg-ink px-5 py-3 text-xs font-semibold uppercase tracking-wider text-white hover:bg-accentSolid"><Plus className="h-4 w-4" /> New code</button></div>
       <div className="overflow-x-auto border border-line/10 bg-surface">
         <table className="w-full min-w-[700px] text-left text-sm">
           <thead className="border-b border-line/10 bg-cream/40 text-[10px] uppercase tracking-wider text-stone"><tr><th className="px-4 py-3">Code</th><th className="px-4 py-3">Type</th><th className="px-4 py-3">Value</th><th className="px-4 py-3">Usage</th><th className="px-4 py-3">Valid until</th><th className="px-4 py-3">Status</th><th className="px-4 py-3 text-right">Actions</th></tr></thead>

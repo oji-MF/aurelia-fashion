@@ -12,7 +12,7 @@ export function BrandManager({ brands }: { brands: Brand[] }) {
   const [editing, setEditing] = useState<Brand | null | undefined>(undefined);
   return (
     <div>
-      <div className="mb-6 flex items-center justify-between"><div><h1 className="font-display text-3xl">Brands</h1><p className="mt-1 text-sm text-stone">Manage the labels you stock.</p></div><button onClick={() => setEditing(null)} className="flex items-center gap-2 bg-ink px-5 py-3 text-xs font-semibold uppercase tracking-wider text-white hover:bg-accent"><Plus className="h-4 w-4" /> Add brand</button></div>
+      <div className="mb-6 flex items-center justify-between"><div><h1 className="font-display text-3xl">Brands</h1><p className="mt-1 text-sm text-stone">Manage the labels you stock.</p></div><button onClick={() => setEditing(null)} className="flex items-center gap-2 bg-ink px-5 py-3 text-xs font-semibold uppercase tracking-wider text-white hover:bg-accentSolid"><Plus className="h-4 w-4" /> Add brand</button></div>
       <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
         {brands.map((brand) => (
           <div key={brand.id} className="flex items-start justify-between border border-line/10 bg-surface p-5">

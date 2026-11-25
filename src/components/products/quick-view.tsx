@@ -67,7 +67,7 @@ export function QuickView({
         <div className="relative aspect-[4/5] bg-cream sm:aspect-auto sm:min-h-[520px]">
           <Image src={product.images[0]} alt={product.name} fill sizes="(max-width: 640px) 100vw, 50vw" className="object-cover" />
           {product.comparePrice && (
-            <span className="absolute left-4 top-4 bg-accent px-2.5 py-1.5 text-[10px] font-bold uppercase tracking-widest text-white">
+            <span className="absolute left-4 top-4 bg-accentSolid px-2.5 py-1.5 text-[10px] font-bold uppercase tracking-widest text-white">
               Save {Math.round(((product.comparePrice - product.price) / product.comparePrice) * 100)}%
             </span>
           )}
@@ -124,7 +124,7 @@ export function QuickView({
               <button onClick={() => setQuantity(Math.min(selected?.stock || 1, quantity + 1))} className="px-3 py-3 text-sm hover:bg-cream" aria-label="Increase quantity">+</button>
             </div>
             <button onClick={add} disabled={pending}
-              className="flex flex-1 items-center justify-center gap-2 bg-ink py-4 text-xs font-semibold uppercase tracking-wider text-white hover:bg-accent disabled:opacity-50">
+              className="flex flex-1 items-center justify-center gap-2 bg-ink py-4 text-xs font-semibold uppercase tracking-wider text-white hover:bg-accentSolid disabled:opacity-50">
               {pending && <Loader2 className="h-4 w-4 animate-spin" />}
               {pending ? "Adding…" : "Add to bag"}
             </button>

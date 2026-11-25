@@ -92,7 +92,7 @@ export function CartView({
       <div className="mx-auto max-w-3xl px-4 py-24 text-center">
         <h1 className="font-display text-4xl">Your bag is empty</h1>
         <p className="mt-4 text-sm text-stone">Discover the season's edit and find something you'll love.</p>
-        <Link href="/new-arrivals" className="mt-8 inline-flex items-center gap-2 bg-ink px-8 py-4 text-xs font-semibold uppercase tracking-wider text-white hover:bg-accent">
+        <Link href="/new-arrivals" className="mt-8 inline-flex items-center gap-2 bg-ink px-8 py-4 text-xs font-semibold uppercase tracking-wider text-white hover:bg-accentSolid">
           Explore new arrivals <ArrowRight className="h-4 w-4" />
         </Link>
       </div>
@@ -174,14 +174,14 @@ export function CartView({
                   className="w-full bg-transparent py-2.5 text-xs outline-none"
                 />
               </div>
-              <button onClick={applyCoupon} disabled={checking} className="bg-ink px-4 text-[11px] font-semibold uppercase tracking-wider text-white hover:bg-accent disabled:opacity-50">
+              <button onClick={applyCoupon} disabled={checking} className="bg-ink px-4 text-[11px] font-semibold uppercase tracking-wider text-white hover:bg-accentSolid disabled:opacity-50">
                 {checking ? <Loader2 className="h-4 w-4 animate-spin" /> : "Apply"}
               </button>
             </div>
             <p className="mt-2 text-[10px] text-stone">Try WELCOME10 or SUMMER20</p>
           </div>
 
-          <Link href={`/checkout?coupon=${encodeURIComponent(applied)}`} className="mt-6 flex w-full items-center justify-center gap-2 bg-accent py-4 text-xs font-semibold uppercase tracking-[0.12em] text-white hover:bg-accent-dark">
+          <Link href={`/checkout?coupon=${encodeURIComponent(applied)}`} className="mt-6 flex w-full items-center justify-center gap-2 bg-accentSolid py-4 text-xs font-semibold uppercase tracking-[0.12em] text-white hover:bg-accentSolid-dark">
             Proceed to checkout <ArrowRight className="h-4 w-4" />
           </Link>
           <Link href="/new-arrivals" className="mt-4 block text-center text-xs text-stone underline underline-offset-4 hover:text-accent">Continue shopping</Link>

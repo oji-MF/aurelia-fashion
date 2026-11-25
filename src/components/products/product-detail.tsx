@@ -124,7 +124,7 @@ export function ProductDetail({
               sizes="(max-width: 1024px) 100vw, 55vw"
               className="object-cover transition-transform duration-500 group-hover:scale-[1.08]"
             />
-            {discount > 0 && <span className="absolute left-4 top-4 bg-accent px-2.5 py-1.5 text-[10px] font-bold uppercase tracking-widest text-white">-{discount}%</span>}
+            {discount > 0 && <span className="absolute left-4 top-4 bg-accentSolid px-2.5 py-1.5 text-[10px] font-bold uppercase tracking-widest text-white">-{discount}%</span>}
             {product.newArrival && <span className="absolute left-4 top-14 bg-surface px-2.5 py-1.5 text-[10px] font-bold uppercase tracking-widest">New</span>}
           </div>
           <div className="mt-3 flex gap-3 overflow-x-auto no-scrollbar">
@@ -234,7 +234,7 @@ export function ProductDetail({
             <button
               onClick={addToBag}
               disabled={pending}
-              className="flex flex-1 items-center justify-center gap-2 bg-ink py-4 text-xs font-semibold uppercase tracking-[0.12em] text-white transition-colors hover:bg-accent disabled:opacity-50"
+              className="flex flex-1 items-center justify-center gap-2 bg-ink py-4 text-xs font-semibold uppercase tracking-[0.12em] text-white transition-colors hover:bg-accentSolid disabled:opacity-50"
             >
               {pending ? <Loader2 className="h-4 w-4 animate-spin" /> : null}
               {pending ? "Adding…" : "Add to bag"}

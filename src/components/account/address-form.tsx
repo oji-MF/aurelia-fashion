@@ -17,7 +17,7 @@ export function AddressManager({ addresses }: { addresses: Address[] }) {
     <div>
       <div className="mb-6 flex items-center justify-between">
         <h2 className="font-display text-2xl">Saved addresses</h2>
-        <button onClick={() => setOpen(!open)} className="bg-ink px-5 py-3 text-xs font-semibold uppercase tracking-wider text-white hover:bg-accent">
+        <button onClick={() => setOpen(!open)} className="bg-ink px-5 py-3 text-xs font-semibold uppercase tracking-wider text-white hover:bg-accentSolid">
           {open ? "Cancel" : "Add address"}
         </button>
       </div>

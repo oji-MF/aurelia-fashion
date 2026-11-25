@@ -206,7 +206,7 @@ export function CheckoutForm({
               <button
                 type="submit"
                 disabled={pending}
-                className="flex flex-1 items-center justify-center gap-2 bg-accent py-4 text-xs font-semibold uppercase tracking-[0.12em] text-white hover:bg-accent-dark disabled:opacity-50"
+                className="flex flex-1 items-center justify-center gap-2 bg-accentSolid py-4 text-xs font-semibold uppercase tracking-[0.12em] text-white hover:bg-accentSolid-dark disabled:opacity-50"
               >
                 {pending ? <Loader2 className="h-4 w-4 animate-spin" /> : <Lock className="h-4 w-4" />}
                 {pending ? "Processing…" : `Pay ${formatMoney(subtotal + shipping)}`}
@@ -292,7 +292,7 @@ function ShippingOption({ active, onClick, title, detail, price }: { active: boo
 
 function NextButton({ onClick, label }: { onClick: () => void; label: string }) {
   return (
-    <button type="button" onClick={onClick} className="mt-8 flex items-center gap-2 bg-ink px-8 py-4 text-xs font-semibold uppercase tracking-wider text-white hover:bg-accent">
+    <button type="button" onClick={onClick} className="mt-8 flex items-center gap-2 bg-ink px-8 py-4 text-xs font-semibold uppercase tracking-wider text-white hover:bg-accentSolid">
       {label} <ChevronRight className="h-4 w-4" />
     </button>
   );

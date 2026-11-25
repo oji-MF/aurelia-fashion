@@ -79,7 +79,7 @@ export default async function AdminDashboard({
             {stats.statusBreakdown.map(({ status, count }) => (
               <div key={status} className="flex items-center gap-3">
                 <span className="w-32 text-xs capitalize text-stone">{status.replace(/_/g, " ")}</span>
-                <div className="h-2 flex-1 bg-cream"><div className="h-full bg-accent" style={{ width: `${stats.orders ? Math.max(2, (count / stats.orders) * 100) : 0}%` }} /></div>
+                <div className="h-2 flex-1 bg-cream"><div className="h-full bg-accentSolid" style={{ width: `${stats.orders ? Math.max(2, (count / stats.orders) * 100) : 0}%` }} /></div>
                 <span className="w-6 text-right text-xs">{count}</span>
               </div>
             ))}

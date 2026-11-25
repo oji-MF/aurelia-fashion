@@ -15,6 +15,7 @@ const config: Config = {
         stone: "rgb(var(--c-stone) / <alpha-value>)",
         charcoal: "#26221f",
         accent: "rgb(var(--c-accent) / <alpha-value>)",
+        accentSolid: "rgb(var(--c-accent-solid) / <alpha-value>)",
         "accent-dark": "#8f3f2a",
         success: "#2f6f4e",
       },

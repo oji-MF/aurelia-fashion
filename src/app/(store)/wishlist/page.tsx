@@ -23,7 +23,7 @@ export default async function WishlistPage() {
         <EmptyState
           title="Nothing saved yet"
           description="Tap the heart on any product to keep it here. Your saved pieces will follow you when you sign in."
-          action={<Link href="/new-arrivals" className="bg-ink px-8 py-4 text-xs font-semibold uppercase tracking-wider text-white hover:bg-accent">Explore new arrivals</Link>}
+          action={<Link href="/new-arrivals" className="bg-ink px-8 py-4 text-xs font-semibold uppercase tracking-wider text-white hover:bg-accentSolid">Explore new arrivals</Link>}
         />
       )}
     </div>

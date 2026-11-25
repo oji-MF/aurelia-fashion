@@ -68,7 +68,7 @@ export function ProductCard({
 
         <div className="absolute left-3 top-3 flex flex-col gap-1.5">
           {product.newArrival && <span className="bg-surface px-2 py-1 text-[9px] font-bold uppercase tracking-widest">New</span>}
-          {discount > 0 && <span className="bg-accent px-2 py-1 text-[9px] font-bold uppercase tracking-widest text-white">-{discount}%</span>}
+          {discount > 0 && <span className="bg-accentSolid px-2 py-1 text-[9px] font-bold uppercase tracking-widest text-white">-{discount}%</span>}
         </div>
 
         <button

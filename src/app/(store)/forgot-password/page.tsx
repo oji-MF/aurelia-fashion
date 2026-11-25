@@ -38,7 +38,7 @@ export default function ForgotPasswordPage() {
         <form onSubmit={submit} className="mt-10 space-y-5">
           <label className="block"><span className="label">Email address</span><input type="email" required value={email} onChange={(e) => setEmail(e.target.value)} className="input" placeholder="you@example.com" /></label>
           {error && <p className="text-xs text-accent">{error}</p>}
-          <button className="w-full bg-ink py-4 text-xs font-semibold uppercase tracking-wider text-white hover:bg-accent">Send reset link</button>
+          <button className="w-full bg-ink py-4 text-xs font-semibold uppercase tracking-wider text-white hover:bg-accentSolid">Send reset link</button>
         </form>
       )}
       <p className="mt-6 text-center"><Link href="/login" className="text-xs text-stone underline underline-offset-4">Back to sign in</Link></p>

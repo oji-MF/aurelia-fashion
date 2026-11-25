@@ -91,7 +91,7 @@ export default async function OrderDetailPage({ params }: { params: Promise<{ id
             <ol className="space-y-3">
               {order.timeline.map((event, i) => (
                 <li key={i} className="flex gap-3 text-xs">
-                  <span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
+                  <span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-accentSolid" />
                   <span><strong className="font-medium capitalize">{event.status.replace(/_/g, " ")}</strong> — {event.note}<span className="block text-stone">{formatDate(event.at)}</span></span>
                 </li>
               ))}

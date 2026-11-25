@@ -21,7 +21,7 @@ export default async function AdminOrdersPage() {
                 <td className="px-4 py-3"><span className="block text-xs">{order.customerName}</span><span className="text-[11px] text-stone">{order.guestEmail}</span></td>
                 <td className="px-4 py-3 text-xs text-stone">{formatDate(order.createdAt)}</td>
                 <td className="px-4 py-3">{formatMoney(order.total)}</td>
-                <td className="px-4 py-3"><span className={`rounded-full px-2 py-1 text-[10px] font-semibold uppercase ${order.paymentStatus === "paid" ? "bg-success/10 text-success" : order.paymentStatus === "failed" ? "bg-accent/10 text-accent" : "bg-cream text-stone"}`}>{order.paymentStatus}</span></td>
+                <td className="px-4 py-3"><span className={`rounded-full px-2 py-1 text-[10px] font-semibold uppercase ${order.paymentStatus === "paid" ? "bg-success/10 text-success" : order.paymentStatus === "failed" ? "bg-accentSolid/10 text-accent" : "bg-cream text-stone"}`}>{order.paymentStatus}</span></td>
                 <td className="px-4 py-3"><OrderStatusControl orderId={order.id} status={order.status} /></td>
                 <td className="px-4 py-3 text-right"><Link href={`/admin/orders/${order.id}`} className="text-xs text-accent underline">Details</Link></td>
               </tr>

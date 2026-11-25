@@ -39,7 +39,7 @@ export function ProductManager({
           <h1 className="font-display text-3xl">Products</h1>
           <p className="mt-1 text-sm text-stone">{products.length} products in the catalogue</p>
         </div>
-        <button onClick={() => setEditing(null)} className="flex items-center gap-2 bg-ink px-5 py-3 text-xs font-semibold uppercase tracking-wider text-white hover:bg-accent">
+        <button onClick={() => setEditing(null)} className="flex items-center gap-2 bg-ink px-5 py-3 text-xs font-semibold uppercase tracking-wider text-white hover:bg-accentSolid">
           <Plus className="h-4 w-4" /> Add product
         </button>
       </div>

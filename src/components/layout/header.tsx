@@ -212,7 +212,7 @@ export function Header({
             <Link href="/cart" aria-label="Shopping bag" className="relative p-2 hover:text-accent">
               <ShoppingBag className="h-[19px] w-[19px]" />
               {cartCount > 0 && (
-                <span className="absolute -right-0.5 -top-0.5 flex h-4 min-w-4 items-center justify-center rounded-full bg-accent px-1 text-[9px] font-bold text-white">
+                <span className="absolute -right-0.5 -top-0.5 flex h-4 min-w-4 items-center justify-center rounded-full bg-accentSolid px-1 text-[9px] font-bold text-white">
                   {cartCount}
                 </span>
               )}

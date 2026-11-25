@@ -48,7 +48,7 @@ export function AuthForm({ mode }: { mode: "login" | "register" }) {
         {mode === "login" && (
           <div className="flex justify-end"><Link href="/forgot-password" className="text-xs text-stone underline underline-offset-4 hover:text-accent">Forgot password?</Link></div>
         )}
-        <button type="submit" disabled={pending} className="flex w-full items-center justify-center gap-2 bg-ink py-4 text-xs font-semibold uppercase tracking-wider text-white hover:bg-accent disabled:opacity-50">
+        <button type="submit" disabled={pending} className="flex w-full items-center justify-center gap-2 bg-ink py-4 text-xs font-semibold uppercase tracking-wider text-white hover:bg-accentSolid disabled:opacity-50">
           {pending && <Loader2 className="h-4 w-4 animate-spin" />}
           {mode === "login" ? "Sign in" : "Create account"}
         </button>

@@ -31,7 +31,7 @@ export default async function OrdersPage() {
                 </div>
                 <div className="text-right">
                   <p className="text-sm font-medium">{formatMoney(order.total)}</p>
-                  <span className={`mt-2 inline-block rounded-full px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider ${statusTone[order.status] || "bg-accent/10 text-accent"}`}>
+                  <span className={`mt-2 inline-block rounded-full px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider ${statusTone[order.status] || "bg-accentSolid/10 text-accent"}`}>
                     {order.status.replace(/_/g, " ")}
                   </span>
                 </div>

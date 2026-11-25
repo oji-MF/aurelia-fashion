@@ -58,7 +58,7 @@ export default async function ConfirmationPage({ params }: { params: Promise<{ o
       </div>
 
       <div className="mt-8 text-center">
-        <Link href="/" className="inline-block bg-ink px-8 py-4 text-xs font-semibold uppercase tracking-wider text-white hover:bg-accent">Continue shopping</Link>
+        <Link href="/" className="inline-block bg-ink px-8 py-4 text-xs font-semibold uppercase tracking-wider text-white hover:bg-accentSolid">Continue shopping</Link>
         <div className="mt-4"><Link href="/account/orders" className="text-xs text-stone underline underline-offset-4">View all my orders</Link></div>
       </div>
     </div>

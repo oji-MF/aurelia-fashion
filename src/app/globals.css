@@ -15,6 +15,7 @@
   --c-line: 20 17 15;
   --c-stone: 111 104 95;
   --c-accent: 180 83 58;
+  --c-accent-solid: 180 83 58;
 }
 
 .dark {
@@ -25,6 +26,7 @@
   --c-line: 235 230 222;
   --c-stone: 163 155 145;
   --c-accent: 214 110 78;
+  --c-accent-solid: 165 68 45;
 }
 
 * { box-sizing: border-box; }

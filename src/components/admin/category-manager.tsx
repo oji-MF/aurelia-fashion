@@ -15,7 +15,7 @@ export function CategoryManager({ categories }: { categories: Category[] }) {
     <div>
       <div className="mb-6 flex items-center justify-between">
         <div><h1 className="font-display text-3xl">Categories</h1><p className="mt-1 text-sm text-stone">Organise your catalogue.</p></div>
-        <button onClick={() => setEditing(null)} className="flex items-center gap-2 bg-ink px-5 py-3 text-xs font-semibold uppercase tracking-wider text-white hover:bg-accent"><Plus className="h-4 w-4" /> Add category</button>
+        <button onClick={() => setEditing(null)} className="flex items-center gap-2 bg-ink px-5 py-3 text-xs font-semibold uppercase tracking-wider text-white hover:bg-accentSolid"><Plus className="h-4 w-4" /> Add category</button>
       </div>
       <div className="overflow-x-auto border border-line/10 bg-surface">
         <table className="w-full min-w-[600px] text-left text-sm">
