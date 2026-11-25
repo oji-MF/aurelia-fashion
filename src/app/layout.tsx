@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     siteName: siteConfig.name,
     title: `${siteConfig.name} — Modern Fashion, Considered`,
     description: siteConfig.description,
-    images: ["https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=1200&q=80"],
+    images: ["https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&w=1200&q=80"],
   },
   twitter: { card: "summary_large_image" },
   robots: { index: true, follow: true },

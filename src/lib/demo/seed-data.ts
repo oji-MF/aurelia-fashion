@@ -45,7 +45,7 @@ const img = (id: string, w = 1000) =>
   `https://images.unsplash.com/${id}?auto=format&fit=crop&w=${w}&q=80`;
 
 export const images = {
-  hero: img("photo-1483985988355-763728e1935b", 1800),
+  hero: img("photo-1539109136881-3be0616acf4b", 1800),
   heroMobile: img("photo-1469334031218-e382a71b716b", 900),
   editorial: img("photo-1529139574466-a303027c1d8b", 1400),
   campaign: img("photo-1558769132-cb1aea458c5e", 1400),
@@ -115,6 +115,22 @@ const photoIds = [
 
 const now = new Date();
 const daysAgo = (d: number) => new Date(now.getTime() - d * 86400000).toISOString();
+
+/** Curated, category-appropriate imagery so products look like what they are. */
+const categoryPhotos: Record<string, string[]> = {
+  dresses: ["photo-1595777457583-95e059d581b8", "photo-1572804013309-59a88b7e92f1", "photo-1566174053879-31528523f8ae", "photo-1539008835657-9e8e9680c956"],
+  tops: ["photo-1596755094514-f87e34085b2c", "photo-1503341504253-dff4815485f1", "photo-1620799140408-edc6dcb6d633", "photo-1521572163474-6864f9cf17ab"],
+  jeans: ["photo-1542272604-787c3835535d", "photo-1541099649105-f69ad21f3246", "photo-1541099649105-f69ad21f3246"],
+  shoes: ["photo-1549298916-b41d501d3772", "photo-1542291026-7eec264c27ff", "photo-1560769629-975ec94e6a86", "photo-1600185365483-26d7a4cc7519"],
+  bags: ["photo-1584917865442-de89df76afd3", "photo-1553062407-98eeb64c6a62", "photo-1547949003-9792a18a2601"],
+  accessories: ["photo-1523275335684-37898b6baf30", "photo-1511499767150-a48a237f0083", "photo-1591047139829-d91aecb6caea"],
+  outerwear: ["photo-1591047139829-d91aecb6caea", "photo-1539533018447-63fcce2678e3", "photo-1544022613-e87ca75a784a"],
+  knitwear: ["photo-1576566588028-4147f3842f27", "photo-1434389677669-e08b4cac3105", "photo-1620799140408-edc6dcb6d633"],
+  shirts: ["photo-1598033129183-c4f50c736f10", "photo-1503341504253-dff4815485f1", "photo-1620799140408-edc6dcb6d633"],
+  sportswear: ["photo-1517836357463-d25dfeac3438", "photo-1571019613454-1cb2f99b2d8b"],
+  beauty: ["photo-1596462502278-27bfdc403348", "photo-1522335789203-aabd1fc54bc9"],
+  clothing: ["photo-1483985988355-763728e1935b", "photo-1490481651871-ab68de25d43d", "photo-1489987707025-afc232f7ea0f", "photo-1539109136881-3be0616acf4b"],
+};
 
 const brandNames = [
   "AURELIA",
@@ -279,6 +295,8 @@ function buildProducts(categories: Category[], brands: Brand[]): Product[] {
     const brand = brandById.get(seed.brand) ?? brands[0];
     const sizes = seed.sizes ?? apparelSizes;
     const id = `p_${String(index + 1).padStart(3, "0")}`;
+    const pool = categoryPhotos[seed.category] ?? categoryPhotos.clothing;
+    const productImages = [0, 1, 2, 3].map((i) => img(pool[i % pool.length], 1000));
     const variants: ProductVariant[] = [];
     for (const [colour, hex] of seed.colours) {
       for (const size of sizes) {
@@ -304,12 +322,7 @@ function buildProducts(categories: Category[], brands: Brand[]): Product[] {
       categoryId: category.id,
       price: seed.price,
       comparePrice: seed.compare ?? null,
-      images: [
-        img(photoIds[seed.photo]),
-        img(photoIds[(seed.photo + 1) % photoIds.length]),
-        img(photoIds[(seed.photo + 7) % photoIds.length]),
-        img(photoIds[(seed.photo + 13) % photoIds.length]),
-      ],
+      images: productImages,
       colours: seed.colours.map(([name, hex]) => ({ name, hex })),
       sizes,
       material: seed.material,

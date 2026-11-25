@@ -68,6 +68,20 @@ const categories = [
   ["Outerwear", "unisex", null, 46, "Layers for changing weather."],
   ["Knitwear", "unisex", null, 18, "Soft knits, considered construction."],
 ];
+const categoryPhotos = {
+  dresses: ["photo-1595777457583-95e059d581b8", "photo-1572804013309-59a88b7e92f1", "photo-1566174053879-31528523f8ae", "photo-1539008835657-9e8e9680c956"],
+  tops: ["photo-1596755094514-f87e34085b2c", "photo-1503341504253-dff4815485f1", "photo-1620799140408-edc6dcb6d633", "photo-1521572163474-6864f9cf17ab"],
+  jeans: ["photo-1542272604-787c3835535d", "photo-1541099649105-f69ad21f3246"],
+  shoes: ["photo-1549298916-b41d501d3772", "photo-1542291026-7eec264c27ff", "photo-1560769629-975ec94e6a86", "photo-1600185365483-26d7a4cc7519"],
+  bags: ["photo-1584917865442-de89df76afd3", "photo-1553062407-98eeb64c6a62", "photo-1547949003-9792a18a2601"],
+  accessories: ["photo-1523275335684-37898b6baf30", "photo-1511499767150-a48a237f0083", "photo-1591047139829-d91aecb6caea"],
+  outerwear: ["photo-1591047139829-d91aecb6caea", "photo-1539533018447-63fcce2678e3", "photo-1544022613-e87ca75a784a"],
+  knitwear: ["photo-1576566588028-4147f3842f27", "photo-1434389677669-e08b4cac3105", "photo-1620799140408-edc6dcb6d633"],
+  shirts: ["photo-1598033129183-c4f50c736f10", "photo-1503341504253-dff4815485f1", "photo-1620799140408-edc6dcb6d633"],
+  sportswear: ["photo-1517836357463-d25dfeac3438", "photo-1571019613454-1cb2f99b2d8b"],
+  beauty: ["photo-1596462502278-27bfdc403348", "photo-1522335789203-aabd1fc54bc9"],
+  clothing: ["photo-1483985988355-763728e1935b", "photo-1490481651871-ab68de25d43d", "photo-1489987707025-afc232f7ea0f", "photo-1539109136881-3be0616acf4b"],
+};
 const brands = ["AURELIA", "NOIR ATELIER", "MAISON V", "STUDIO 84", "LUNE", "FORM & FIELD", "NORTHERN", "VERA", "KAIRO", "ÉLAN"];
 const apparel = ["XS", "S", "M", "L", "XL"];
 const shoes = ["36", "37", "38", "39", "40", "41", "42", "43"];
@@ -195,11 +209,13 @@ async function upsert(collection, documentId, payload) {
       sku: `AUR-${String(i + 1).padStart(4, "0")}-${colour.slice(0, 3).toUpperCase()}-${size.toUpperCase()}`,
       price, stock: ((i * 7 + colour.length * 3 + si * 5) % 17) + 2, lowStockThreshold: 3,
     })));
+    const pool = categoryPhotos[category] || categoryPhotos.clothing;
+    const productImages = [0, 1, 2, 3].map((n) => img(pool[n % pool.length], 1000));
     const flagList = flags ? flags.split(",") : [];
     const payload = {
       name, slug: `${slug(name)}-${i + 1}`, description: `${name} by ${brands[brand]}. Cut from considered ${material.toLowerCase()} with an attention to detail that elevates the everyday. Designed in a relaxed silhouette that moves with you.`,
       brandId: brandIds[brands[brand]], categoryId: categoryIds[category], price, comparePrice: compare || null,
-      images: JSON.stringify([img(photos[photo]), img(photos[(photo + 1) % photos.length]), img(photos[(photo + 7) % photos.length])]),
+      images: JSON.stringify(productImages),
       colours: JSON.stringify(colours.map(([name, hex]) => ({ name, hex }))), sizes: JSON.stringify(sizes),
       variants: JSON.stringify(variants), material, care: "Gentle machine wash at 30°C with similar colours. Do not bleach. Warm iron if needed.",
       status: "published", featured: flagList.includes("featured"), newArrival: flagList.includes("new"),
@@ -254,7 +270,7 @@ async function upsert(collection, documentId, payload) {
     announcement: "Complimentary delivery on orders over GH₵500 · New season collection now live",
     heroHeading: "A new language of style",
     heroSubheading: "Considered pieces, modern silhouettes and the quiet confidence of dressing well.",
-    heroImage: img(photos[0], 1800), heroImageMobile: img(photos[3], 900),
+    heroImage: img("photo-1539109136881-3be0616acf4b", 1800), heroImageMobile: img(photos[3], 900),
     aboutText: "AURELIA is a modern fashion house built on a simple idea: great style should feel effortless.",
     contactEmail: "hello@aurelia.example", contactPhone: "+233 20 000 0000",
     social: { instagram: "#", facebook: "#", tiktok: "#", x: "#" },

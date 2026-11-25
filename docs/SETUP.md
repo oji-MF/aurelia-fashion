@@ -8,7 +8,7 @@ cp .env.example .env.local
 npm run dev
 ```
 
-The app creates `.data/store.json` on first request with 47 products, 14 categories, 10 brands, coupons, reviews and store settings. Delete that file to reset to the seed state.
+The app creates `.data/store.json` on first request with 82 products, 14 categories, 10 brands, coupons, reviews and store settings. Delete that file to reset to the seed state.
 
 Use the demo accounts shown in the README or on the sign-in page.
 

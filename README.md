@@ -1,6 +1,6 @@
 # AURELIA — Premium Fashion E-Commerce Platform
 
-A complete, production-oriented fashion retail platform built with **Next.js 15 (App Router)**, **TypeScript**, **Tailwind CSS** and **Appwrite** (database, auth, storage). It runs out of the box in demo mode with 47 seeded products, and switches to a real Appwrite backend as soon as credentials are supplied.
+A complete, production-oriented fashion retail platform built with **Next.js 15 (App Router)**, **TypeScript**, **Tailwind CSS** and **Appwrite** (database, auth, storage). It runs out of the box in demo mode with 82 seeded products, and switches to a real Appwrite backend as soon as credentials are supplied.
 
 Payments (Paystack / Stripe), transactional email (Resend), SEO, RBAC, inventory, order tracking and a full admin dashboard are implemented behind environment variables.
 
@@ -40,6 +40,8 @@ Change these before using the platform publicly.
 - Wishlist with guest persistence that follows the account after sign-in.
 - Four-step checkout (information → address → shipping → payment) with server-authoritative repricing and stock re-checks.
 - Customer accounts: registration, login, password reset, profile, addresses, order history, tracking, reviews and wishlist.
+- Full light/dark theme with system detection and a persisted toggle in the storefront and admin.
+- Quick-view modal, size guide, recently-viewed rail, sticky mobile add-to-bag bar and country-aware delivery estimates.
 - Responsive layouts, focus states, reduced-motion support and semantic markup.
 
 ### Admin (`/admin`)
