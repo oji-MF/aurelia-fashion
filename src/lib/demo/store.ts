@@ -1,8 +1,13 @@
 import fs from "node:fs";
+import os from "node:os";
 import path from "node:path";
 import { createSeedData, type DemoStore } from "./seed-data";
 
-const DATA_DIR = path.join(process.cwd(), ".data");
+// Vercel's serverless filesystem is read-only except for os.tmpdir().
+// Local development writes to ./.data (gitignored) so state survives restarts.
+const DATA_DIR = process.env.VERCEL
+  ? path.join(os.tmpdir(), "aurelia-demo")
+  : path.join(process.cwd(), ".data");
 const STORE_FILE = path.join(DATA_DIR, "store.json");
 
 let cache: DemoStore | null = null;
