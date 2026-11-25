@@ -26,10 +26,8 @@ const themeScript = `(function(){try{var t=localStorage.getItem('aurelia-theme')
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <head>
-        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
-      </head>
       <body>
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
         <ToastProvider>{children}</ToastProvider>
       </body>
     </html>
