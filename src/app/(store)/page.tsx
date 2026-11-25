@@ -60,7 +60,7 @@ export default async function HomePage() {
           </div>
         </div>
         <div className="absolute bottom-8 right-10 hidden items-center gap-3 text-[10px] uppercase tracking-[0.2em] text-white/60 md:flex">
-          <span>Scroll to explore</span><span className="h-px w-12 bg-white/50" />
+          <span>Scroll to explore</span><span className="h-px w-12 bg-surface/50" />
         </div>
       </section>
 
@@ -142,7 +142,7 @@ export default async function HomePage() {
                     <h3 className="font-display text-2xl md:text-3xl">{campaign.title}</h3>
                     <p className="mt-1 text-xs text-white/70">{campaign.subtitle}</p>
                   </div>
-                  <span className="flex h-10 w-10 items-center justify-center rounded-full border border-white/40 transition-colors group-hover:bg-white group-hover:text-ink"><ArrowUpRight className="h-4 w-4" /></span>
+                  <span className="flex h-10 w-10 items-center justify-center rounded-full border border-white/40 transition-colors group-hover:bg-surface group-hover:text-fg"><ArrowUpRight className="h-4 w-4" /></span>
                 </div>
               </Link>
             ))}
@@ -165,19 +165,19 @@ export default async function HomePage() {
         </section>
       )}
 
-      {/* Featured -->
+      {/* Featured */}
       <section className="mx-auto max-w-[1600px] px-4 pb-16 sm:px-6 lg:px-10 lg:pb-24">
         <SectionHeading eyebrow="Editors' picks" title="Worth the investment" />
         <ProductGrid products={featured.filter((p) => !newArrivals.some((n) => n.id === p.id)).slice(0, 4)} wishlist={wishlist} />
       </section>
 
       {/* Brands */}
-      <section className="border-y border-ink/10 bg-white/50 py-14">
+      <section className="border-y border-line/10 bg-surface/50 py-14">
         <div className="mx-auto max-w-[1600px] px-4 sm:px-6 lg:px-10">
           <p className="eyebrow mb-8 text-center text-stone">Labels we love</p>
           <div className="flex flex-wrap items-center justify-center gap-x-12 gap-y-6">
             {brands.map((brand) => (
-              <Link key={brand.id} href={`/brands/${brand.slug}`} className="font-display text-xl tracking-[0.14em] text-charcoal/70 transition-colors hover:text-accent md:text-2xl">
+              <Link key={brand.id} href={`/brands/${brand.slug}`} className="font-display text-xl tracking-[0.14em] text-fg/70 transition-colors hover:text-accent md:text-2xl">
                 {brand.name}
               </Link>
             ))}

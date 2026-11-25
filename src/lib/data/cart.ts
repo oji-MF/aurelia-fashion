@@ -1,6 +1,6 @@
 import { cookies } from "next/headers";
 import { getProductById } from "./catalogue";
-import { getStore, mutateStore } from "@/lib/demo/store";
+import { mutateStore } from "@/lib/demo/store";
 import { isAppwriteConfigured } from "@/lib/config";
 import type { Cart, CartItem } from "@/lib/types";
 

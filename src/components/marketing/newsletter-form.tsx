@@ -33,7 +33,7 @@ export function NewsletterForm({ dark = false }: { dark?: boolean }) {
           placeholder="Your email address"
           className={cn(
             "w-full bg-transparent py-2.5 text-sm outline-none",
-            dark ? "text-white placeholder:text-white/40" : "text-ink placeholder:text-stone",
+            dark ? "text-white placeholder:text-fg/40" : "text-fg placeholder:text-stone",
           )}
         />
         <button type="submit" disabled={pending} aria-label="Subscribe" className="p-2 hover:text-accent">

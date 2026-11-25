@@ -16,14 +16,14 @@ export default async function ReviewsPage() {
     <div>
       <h2 className="font-display text-2xl">Your reviews</h2>
       {reviews.length ? (
-        <div className="mt-6 divide-y divide-ink/10 border border-ink/10 bg-white/60">
+        <div className="mt-6 divide-y divide-line/10 border border-line/10 bg-surface/60">
           {reviews.map((review, i) => (
             <div key={review.id} className="p-5">
               <div className="flex items-start justify-between gap-4">
                 <div>
                   <p className="text-sm font-medium">{products[i]?.name || "Product"}</p>
                   <div className="mt-1 flex gap-0.5 text-accent">
-                    {Array.from({ length: 5 }).map((_, n) => <Star key={n} className={`h-3 w-3 ${n < review.rating ? "fill-accent" : "text-ink/20"}`} />)}
+                    {Array.from({ length: 5 }).map((_, n) => <Star key={n} className={`h-3 w-3 ${n < review.rating ? "fill-accent" : "text-fg/20"}`} />)}
                   </div>
                 </div>
                 <span className="rounded-full bg-cream px-2.5 py-1 text-[10px] uppercase tracking-wider text-stone">{review.status}</span>
@@ -33,7 +33,7 @@ export default async function ReviewsPage() {
             </div>
           ))}
         </div>
-      ) : <p className="mt-6 border border-dashed border-ink/15 p-10 text-center text-sm text-stone">You haven't written any reviews yet. <Link href="/account/orders" className="text-accent underline">Review a purchase</Link>.</p>}
+      ) : <p className="mt-6 border border-dashed border-line/15 p-10 text-center text-sm text-stone">You haven't written any reviews yet. <Link href="/account/orders" className="text-accent underline">Review a purchase</Link>.</p>}
     </div>
   );
 }

@@ -14,7 +14,7 @@ export function slugify(value: string) {
     .replace(/^-|-$/g, "");
 }
 
-export function formatMoney(amount: number, currency = "GHS", symbol = "GH₵") {
+export function formatMoney(amount: number, _currency = "GHS", symbol = "GH₵") {
   const formatted = new Intl.NumberFormat("en-GH", {
     minimumFractionDigits: 2,
     maximumFractionDigits: 2,

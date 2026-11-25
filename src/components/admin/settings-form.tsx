@@ -16,7 +16,7 @@ export function SettingsForm({ settings }: { settings: StoreSettings }) {
       <h1 className="font-display text-3xl">Store settings</h1>
       <p className="mt-1 text-sm text-stone">Configure your store identity, shipping and homepage messaging.</p>
       <form action={action} className="mt-6 space-y-8">
-        <fieldset className="space-y-4 border border-ink/10 bg-white p-6">
+        <fieldset className="space-y-4 border border-line/10 bg-surface p-6">
           <legend className="eyebrow px-2 text-accent">Store</legend>
           <label className="block"><span className="label">Store name</span><input name="storeName" defaultValue={settings.storeName} className="input" /></label>
           <label className="block"><span className="label">Announcement bar</span><input name="announcement" defaultValue={settings.announcement} className="input" /></label>
@@ -25,7 +25,7 @@ export function SettingsForm({ settings }: { settings: StoreSettings }) {
             <label className="block"><span className="label">Contact phone</span><input name="contactPhone" defaultValue={settings.contactPhone} className="input" /></label>
           </div>
         </fieldset>
-        <fieldset className="space-y-4 border border-ink/10 bg-white p-6">
+        <fieldset className="space-y-4 border border-line/10 bg-surface p-6">
           <legend className="eyebrow px-2 text-accent">Shipping</legend>
           <div className="grid gap-4 sm:grid-cols-3">
             <label className="block"><span className="label">Standard (pesewas)</span><input name="standardShipping" type="number" min="0" defaultValue={settings.standardShipping} className="input" /></label>
@@ -33,7 +33,7 @@ export function SettingsForm({ settings }: { settings: StoreSettings }) {
             <label className="block"><span className="label">Free over (pesewas)</span><input name="freeShippingThreshold" type="number" min="0" defaultValue={settings.freeShippingThreshold} className="input" /></label>
           </div>
         </fieldset>
-        <fieldset className="space-y-4 border border-ink/10 bg-white p-6">
+        <fieldset className="space-y-4 border border-line/10 bg-surface p-6">
           <legend className="eyebrow px-2 text-accent">Homepage hero</legend>
           <label className="block"><span className="label">Heading</span><input name="heroHeading" defaultValue={settings.heroHeading} className="input" /></label>
           <label className="block"><span className="label">Subheading</span><textarea name="heroSubheading" rows={2} defaultValue={settings.heroSubheading} className="input" /></label>

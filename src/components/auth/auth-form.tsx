@@ -61,7 +61,7 @@ export function AuthForm({ mode }: { mode: "login" | "register" }) {
         </Link>
       </p>
 
-      <div className="mt-10 border-t border-ink/10 pt-6 text-center">
+      <div className="mt-10 border-t border-line/10 pt-6 text-center">
         <p className="eyebrow mb-3 text-stone">Demo accounts</p>
         <p className="text-xs leading-relaxed text-stone">Administrator: <strong>admin@aurelia.demo</strong><br />Customer: <strong>customer@aurelia.demo</strong><br />Password: <strong>Aurelia!2026</strong></p>
       </div>

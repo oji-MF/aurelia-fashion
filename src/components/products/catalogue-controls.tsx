@@ -80,7 +80,7 @@ export function CatalogueControls({
   const filterPanel = (
     <div className={cn("space-y-7", pending && "opacity-60 transition-opacity")}>
       <div className="flex items-center justify-between">
-        <p className="eyebrow text-ink">Filters {activeCount > 0 && `(${activeCount})`}</p>
+        <p className="eyebrow text-fg">Filters {activeCount > 0 && `(${activeCount})`}</p>
         {activeCount > 0 && (
           <button onClick={() => router.push(pathname, { scroll: false })} className="text-xs text-accent underline underline-offset-4">
             Clear all
@@ -108,7 +108,7 @@ export function CatalogueControls({
             placeholder="Min"
             defaultValue={current.priceMin || ""}
             onBlur={(e) => update("priceMin", e.target.value || null)}
-            className="w-full border border-ink/15 bg-white px-2 py-2 text-xs outline-none focus:border-accent"
+            className="w-full border border-line/15 bg-surface px-2 py-2 text-xs outline-none focus:border-accent"
           />
           <span className="text-stone">—</span>
           <input
@@ -117,7 +117,7 @@ export function CatalogueControls({
             placeholder="Max"
             defaultValue={current.priceMax || ""}
             onBlur={(e) => update("priceMax", e.target.value || null)}
-            className="w-full border border-ink/15 bg-white px-2 py-2 text-xs outline-none focus:border-accent"
+            className="w-full border border-line/15 bg-surface px-2 py-2 text-xs outline-none focus:border-accent"
           />
         </div>
       </FilterGroup>
@@ -130,7 +130,7 @@ export function CatalogueControls({
               onClick={() => toggle("size", size)}
               className={cn(
                 "min-w-9 border px-2.5 py-1.5 text-xs transition-colors",
-                list("size").includes(size) ? "border-ink bg-ink text-white" : "border-ink/15 hover:border-ink",
+                list("size").includes(size) ? "border-line bg-ink text-white" : "border-line/15 hover:border-line",
               )}
             >
               {size}
@@ -185,7 +185,7 @@ export function CatalogueControls({
 
   return (
     <>
-      <div className={cn("mb-6 flex items-center justify-between gap-4 border-b border-ink/10 pb-4", className)}>
+      <div className={cn("mb-6 flex items-center justify-between gap-4 border-b border-line/10 pb-4", className)}>
         <button
           onClick={() => setMobileOpen(true)}
           className="flex items-center gap-2 text-xs font-medium uppercase tracking-wider lg:hidden"
@@ -199,7 +199,7 @@ export function CatalogueControls({
             id="sort"
             value={String(current.sort || "recommended")}
             onChange={(e) => update("sort", e.target.value === "recommended" ? null : e.target.value)}
-            className="border-b border-ink/20 bg-transparent py-1.5 pr-6 text-xs font-medium outline-none"
+            className="border-b border-line/20 bg-transparent py-1.5 pr-6 text-xs font-medium outline-none"
           >
             {sortOptions.map(([value, label]) => <option key={value} value={value}>{label}</option>)}
           </select>
@@ -241,7 +241,7 @@ export function CatalogueControls({
                 aria-current={active ? "page" : undefined}
                 className={cn(
                   "flex h-9 w-9 items-center justify-center text-xs",
-                  active ? "bg-ink text-white" : "border border-ink/15 hover:border-ink",
+                  active ? "bg-ink text-white" : "border border-line/15 hover:border-line",
                 )}
               >
                 {p}
@@ -257,7 +257,7 @@ export function CatalogueControls({
 function FilterGroup({ title, children }: { title: string; children: React.ReactNode }) {
   const [open, setOpen] = useState(true);
   return (
-    <div className="border-t border-ink/10 pt-5">
+    <div className="border-t border-line/10 pt-5">
       <button onClick={() => setOpen(!open)} className="mb-3 flex w-full items-center justify-between text-left">
         <span className="text-xs font-semibold uppercase tracking-wider">{title}</span>
         <ChevronDown className={cn("h-3.5 w-3.5 transition-transform", open && "rotate-180")} />
@@ -269,8 +269,8 @@ function FilterGroup({ title, children }: { title: string; children: React.React
 
 function CheckRow({ label, checked, onChange }: { label: string; checked: boolean; onChange: () => void }) {
   return (
-    <label className="flex cursor-pointer items-center gap-2.5 text-xs text-charcoal">
-      <span className={cn("flex h-4 w-4 items-center justify-center border", checked ? "border-ink bg-ink text-white" : "border-ink/25")}>
+    <label className="flex cursor-pointer items-center gap-2.5 text-xs text-fg">
+      <span className={cn("flex h-4 w-4 items-center justify-center border", checked ? "border-line bg-ink text-white" : "border-line/25")}>
         {checked && <Check className="h-3 w-3" />}
       </span>
       <input type="checkbox" checked={checked} onChange={onChange} className="sr-only" />

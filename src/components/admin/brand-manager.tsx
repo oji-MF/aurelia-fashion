@@ -15,7 +15,7 @@ export function BrandManager({ brands }: { brands: Brand[] }) {
       <div className="mb-6 flex items-center justify-between"><div><h1 className="font-display text-3xl">Brands</h1><p className="mt-1 text-sm text-stone">Manage the labels you stock.</p></div><button onClick={() => setEditing(null)} className="flex items-center gap-2 bg-ink px-5 py-3 text-xs font-semibold uppercase tracking-wider text-white hover:bg-accent"><Plus className="h-4 w-4" /> Add brand</button></div>
       <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
         {brands.map((brand) => (
-          <div key={brand.id} className="flex items-start justify-between border border-ink/10 bg-white p-5">
+          <div key={brand.id} className="flex items-start justify-between border border-line/10 bg-surface p-5">
             <div><p className="font-display text-lg">{brand.name}</p><p className="mt-1 text-xs text-stone">{brand.description}</p><span className={`mt-3 inline-block rounded-full px-2 py-1 text-[10px] uppercase ${brand.active ? "bg-success/10 text-success" : "bg-cream text-stone"}`}>{brand.active ? "Active" : "Inactive"}</span></div>
             <button onClick={() => setEditing(brand)} className="p-2 text-stone hover:text-accent"><Pencil className="h-4 w-4" /></button>
           </div>

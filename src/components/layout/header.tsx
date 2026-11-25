@@ -9,6 +9,7 @@ import {
 } from "lucide-react";
 import type { Category } from "@/lib/types";
 import { cn } from "@/lib/utils";
+import { ThemeToggle } from "@/components/ui/theme-toggle";
 
 type Suggestion = { id: string; name: string; slug: string; image: string; price: number; brand: string };
 
@@ -93,7 +94,7 @@ export function Header({
         </div>
       )}
 
-      <div className="border-b border-ink/10">
+      <div className="border-b border-line/10">
         <div className="mx-auto flex h-16 max-w-[1600px] items-center gap-6 px-4 sm:px-6 lg:px-10">
           <button
             className="-ml-2 p-2 lg:hidden"
@@ -139,8 +140,8 @@ export function Header({
                 <Search className="h-[19px] w-[19px]" />
               </button>
               {searchOpen && (
-                <div className="absolute right-0 top-11 w-[min(90vw,420px)] border border-ink/10 bg-white p-4 shadow-lift">
-                  <div className="flex items-center gap-2 border-b border-ink/15 pb-2">
+                <div className="absolute right-0 top-11 w-[min(90vw,420px)] border border-line/10 bg-surface p-4 shadow-lift">
+                  <div className="flex items-center gap-2 border-b border-line/15 pb-2">
                     <Search className="h-4 w-4 text-stone" />
                     <input
                       autoFocus
@@ -193,7 +194,7 @@ export function Header({
                     <Link
                       href={`/search?q=${encodeURIComponent(query)}`}
                       onClick={() => setSearchOpen(false)}
-                      className="mt-3 flex items-center justify-center gap-2 border-t border-ink/10 pt-3 text-xs font-medium hover:text-accent"
+                      className="mt-3 flex items-center justify-center gap-2 border-t border-line/10 pt-3 text-xs font-medium hover:text-accent"
                     >
                       View all results <ArrowRight className="h-3.5 w-3.5" />
                     </Link>
@@ -201,6 +202,7 @@ export function Header({
                 </div>
               )}
             </div>
+            <ThemeToggle compact />
             <Link href="/account" aria-label="Account" className="p-2 hover:text-accent">
               <UserRound className="h-[19px] w-[19px]" />
             </Link>
@@ -222,7 +224,7 @@ export function Header({
       {/* Mega menu */}
       {activeMega && (
         <div
-          className="absolute inset-x-0 top-full hidden border-b border-ink/10 bg-white shadow-lift xl:block"
+          className="absolute inset-x-0 top-full hidden border-b border-line/10 bg-surface shadow-lift xl:block"
           onMouseEnter={() => setActiveMega(activeMega)}
           onMouseLeave={() => setActiveMega(null)}
         >
@@ -234,7 +236,7 @@ export function Header({
                   <li key={cat.id}>
                     <Link
                       href={`/${cat.gender === "women" ? "women" : cat.gender === "men" ? "men" : "c"}/${cat.slug}`}
-                      className="text-sm text-charcoal hover:text-accent"
+                      className="text-sm text-fg hover:text-accent"
                     >
                       {cat.name}
                     </Link>
@@ -247,7 +249,7 @@ export function Header({
               <ul className="space-y-2.5">
                 {["New Arrivals", "Best Sellers", "Everyday Essentials", "Workwear", "Partywear", "The Sale"].map((label) => (
                   <li key={label}>
-                    <Link href="/new-arrivals" className="text-sm text-charcoal hover:text-accent">{label}</Link>
+                    <Link href="/new-arrivals" className="text-sm text-fg hover:text-accent">{label}</Link>
                   </li>
                 ))}
               </ul>
@@ -279,11 +281,11 @@ export function Header({
             </div>
             <nav className="space-y-1">
               {navItems.map((item) => (
-                <Link key={item.label} href={item.href} className="flex items-center justify-between border-b border-ink/10 py-3.5 font-display text-xl">
+                <Link key={item.label} href={item.href} className="flex items-center justify-between border-b border-line/10 py-3.5 font-display text-xl">
                   {item.label}<ArrowRight className="h-4 w-4 text-stone" />
                 </Link>
               ))}
-              <Link href="/account" className="flex items-center justify-between border-b border-ink/10 py-3.5 font-display text-xl">
+              <Link href="/account" className="flex items-center justify-between border-b border-line/10 py-3.5 font-display text-xl">
                 My Account<ArrowRight className="h-4 w-4 text-stone" />
               </Link>
             </nav>
@@ -294,7 +296,7 @@ export function Header({
                   <Link
                     key={cat.id}
                     href={`/${cat.gender === "women" ? "women" : cat.gender === "men" ? "men" : "c"}/${cat.slug}`}
-                    className="rounded-full border border-ink/15 px-3 py-1.5 text-xs"
+                    className="rounded-full border border-line/15 px-3 py-1.5 text-xs"
                   >
                     {cat.name}
                   </Link>

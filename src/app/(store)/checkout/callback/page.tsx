@@ -33,7 +33,7 @@ export default async function PaymentCallback({
         <p className="mt-3 text-sm text-stone">Thank you. Your order <strong>{orderNumber}</strong> is being prepared. A confirmation has been sent to your email.</p>
         <div className="mt-8 flex justify-center gap-4">
           <Link href={`/checkout/confirmation/${orderNumber}`} className="bg-ink px-6 py-3.5 text-xs font-semibold uppercase tracking-wider text-white">View order</Link>
-          <Link href="/" className="border border-ink/20 px-6 py-3.5 text-xs font-semibold uppercase tracking-wider">Continue shopping</Link>
+          <Link href="/" className="border border-line/20 px-6 py-3.5 text-xs font-semibold uppercase tracking-wider">Continue shopping</Link>
         </div>
       </div>
     );

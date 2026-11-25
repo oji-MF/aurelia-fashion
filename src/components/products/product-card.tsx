@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Heart, Plus, Eye } from "lucide-react";
 import { addToCartAction, toggleWishlistAction } from "@/app/actions";
+import { QuickView } from "./quick-view";
 import { useToast } from "@/components/ui/toast";
 import { formatMoney, cn } from "@/lib/utils";
 import type { Product } from "@/lib/types";
@@ -20,6 +21,7 @@ export function ProductCard({
 }) {
   const [saved, setSaved] = useState(wishlisted);
   const [hover, setHover] = useState(false);
+  const [quickView, setQuickView] = useState(false);
   const [pending, startTransition] = useTransition();
   const { toast } = useToast();
   const discount = product.comparePrice
@@ -65,14 +67,14 @@ export function ProductCard({
         </Link>
 
         <div className="absolute left-3 top-3 flex flex-col gap-1.5">
-          {product.newArrival && <span className="bg-white px-2 py-1 text-[9px] font-bold uppercase tracking-widest">New</span>}
+          {product.newArrival && <span className="bg-surface px-2 py-1 text-[9px] font-bold uppercase tracking-widest">New</span>}
           {discount > 0 && <span className="bg-accent px-2 py-1 text-[9px] font-bold uppercase tracking-widest text-white">-{discount}%</span>}
         </div>
 
         <button
           onClick={toggleSave}
           aria-label={saved ? "Remove from wishlist" : "Add to wishlist"}
-          className="absolute right-3 top-3 flex h-8 w-8 items-center justify-center rounded-full bg-white/90 backdrop-blur transition-transform hover:scale-110"
+          className="absolute right-3 top-3 flex h-8 w-8 items-center justify-center rounded-full bg-surface/90 backdrop-blur transition-transform hover:scale-110"
         >
           <Heart className={cn("h-4 w-4", saved && "fill-accent text-accent")} />
         </button>
@@ -81,17 +83,17 @@ export function ProductCard({
           <button
             onClick={quickAdd}
             disabled={pending}
-            className="flex flex-1 items-center justify-center gap-2 bg-white py-2.5 text-[11px] font-semibold uppercase tracking-wider text-ink transition-colors hover:bg-ink hover:text-white disabled:opacity-60"
+            className="flex flex-1 items-center justify-center gap-2 bg-surface py-2.5 text-[11px] font-semibold uppercase tracking-wider text-fg transition-colors hover:bg-ink hover:text-white disabled:opacity-60"
           >
             <Plus className="h-3.5 w-3.5" /> {pending ? "Adding…" : "Quick add"}
           </button>
-          <Link
-            href={`/product/${product.slug}`}
+          <button
+            onClick={(e) => { e.preventDefault(); e.stopPropagation(); setQuickView(true); }}
             aria-label="Quick view"
-            className="flex h-10 w-10 items-center justify-center bg-white text-ink transition-colors hover:bg-ink hover:text-white"
+            className="flex h-10 w-10 items-center justify-center bg-surface text-fg transition-colors hover:bg-ink hover:text-white"
           >
             <Eye className="h-4 w-4" />
-          </Link>
+          </button>
         </div>
       </div>
 
@@ -116,6 +118,9 @@ export function ProductCard({
           {product.colours.length > 5 && <span className="text-[10px] text-stone">+{product.colours.length - 5}</span>}
         </div>
       </div>
+      {quickView && (
+        <QuickView product={product} wishlisted={saved} onClose={() => setQuickView(false)} />
+      )}
     </article>
   );
 }

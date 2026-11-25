@@ -1,6 +1,6 @@
 "use client";
 
-import { useActionState, useEffect, useState } from "react";
+import { useActionState, useEffect } from "react";
 import { X } from "lucide-react";
 import { saveProductAction, type ActionState } from "@/app/actions";
 import { useToast } from "@/components/ui/toast";
@@ -56,7 +56,7 @@ export function ProductForm({
             <label className="block"><span className="label">Status</span><select name="status" defaultValue={product?.status || "draft"} className="input"><option value="draft">Draft</option><option value="published">Published</option><option value="archived">Archived</option></select></label>
           </div>
           <label className="block"><span className="label">Care instructions</span><textarea name="care" rows={2} defaultValue={product?.care} className="input resize-y" /></label>
-          <div className="flex flex-wrap gap-5 border-t border-ink/10 pt-5">
+          <div className="flex flex-wrap gap-5 border-t border-line/10 pt-5">
             {[["featured", "Featured"], ["newArrival", "New arrival"], ["trending", "Trending"]].map(([name, label]) => (
               <label key={name} className="flex items-center gap-2 text-xs"><input type="checkbox" name={name} defaultChecked={Boolean(product?.[name as "featured"])} className="accent-accent" /> {label}</label>
             ))}

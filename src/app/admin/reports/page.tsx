@@ -19,13 +19,13 @@ export default async function AdminReportsPage() {
       <p className="mt-1 text-sm text-stone">Download store data as CSV for further analysis.</p>
       <div className="mt-6 grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
         {exports.map(([type, label]) => (
-          <a key={type} href={`/api/admin/export?type=${type}`} className="flex items-center justify-between border border-ink/10 bg-white p-5 transition-colors hover:border-ink/40">
+          <a key={type} href={`/api/admin/export?type=${type}`} className="flex items-center justify-between border border-line/10 bg-surface p-5 transition-colors hover:border-line/40">
             <div><p className="font-medium">{label}</p><p className="mt-1 text-[11px] text-stone">CSV download</p></div>
             <span className="text-xs text-accent">Download ↗</span>
           </a>
         ))}
       </div>
-      <section className="mt-8 border border-ink/10 bg-white p-6">
+      <section className="mt-8 border border-line/10 bg-surface p-6">
         <h2 className="font-display text-xl">30-day summary</h2>
         <div className="mt-5 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {[

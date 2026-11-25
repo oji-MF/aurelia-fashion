@@ -2,10 +2,11 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import {
   LayoutDashboard, Package, FolderTree, Tag, ShoppingCart, Boxes, Ticket,
-  Users, ShieldCheck, Home, BarChart3, Settings, Star, LogOut, Menu,
+  Users, ShieldCheck, Home, BarChart3, Settings, Star, LogOut,
 } from "lucide-react";
 import { requireAdmin } from "@/lib/auth";
 import { logoutAction } from "@/app/actions";
+import { ThemeToggle } from "@/components/ui/theme-toggle";
 
 export const dynamic = "force-dynamic";
 
@@ -32,19 +33,19 @@ export default async function AdminLayout({ children }: { children: React.ReactN
   return (
     <div className="min-h-screen bg-cream/40">
       <div className="lg:flex">
-        <aside className="lg:sticky lg:top-0 lg:h-screen lg:w-64 lg:shrink-0 lg:overflow-y-auto border-r border-ink/10 bg-white">
-          <div className="flex h-16 items-center justify-between border-b border-ink/10 px-5">
+        <aside className="lg:sticky lg:top-0 lg:h-screen lg:w-64 lg:shrink-0 lg:overflow-y-auto border-r border-line/10 bg-surface">
+          <div className="flex h-16 items-center justify-between border-b border-line/10 px-5">
             <Link href="/" className="font-display text-lg tracking-[0.16em]">AURELIA</Link>
             <span className="rounded-sm bg-accent px-2 py-1 text-[9px] font-bold uppercase tracking-wider text-white">Admin</span>
           </div>
           <nav className="space-y-0.5 p-3">
             {nav.map(({ label, href, icon: Icon }) => (
-              <Link key={href} href={href} className="flex items-center gap-3 rounded-sm px-3 py-2.5 text-[13px] text-charcoal transition-colors hover:bg-cream hover:text-accent">
+              <Link key={href} href={href} className="flex items-center gap-3 rounded-sm px-3 py-2.5 text-[13px] text-fg transition-colors hover:bg-cream hover:text-accent">
                 <Icon className="h-4 w-4" /> {label}
               </Link>
             ))}
           </nav>
-          <div className="border-t border-ink/10 p-4">
+          <div className="border-t border-line/10 p-4">
             <p className="truncate text-xs font-medium">{admin.name}</p>
             <p className="truncate text-[11px] text-stone">{admin.email}</p>
             <form action={logoutAction} className="mt-3">
@@ -59,7 +60,10 @@ export default async function AdminLayout({ children }: { children: React.ReactN
               <p className="eyebrow text-accent">Administration</p>
               <p className="mt-1 text-xs text-stone">Signed in as {admin.name} · {admin.roles.join(", ").replace(/_/g, " ")}</p>
             </div>
-            <Link href="/" target="_blank" className="border border-ink/15 px-4 py-2 text-xs hover:border-ink">View store ↗</Link>
+            <div className="flex items-center gap-3">
+              <ThemeToggle compact />
+              <Link href="/" target="_blank" className="border border-line/15 px-4 py-2 text-xs hover:border-accent">View store ↗</Link>
+            </div>
           </div>
           {children}
         </main>

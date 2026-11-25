@@ -26,7 +26,7 @@ export function ConfirmDemoPayment({ orderNumber }: { orderNumber: string }) {
           }
         })
       }
-      className="mt-5 border border-ink/20 px-6 py-3 text-xs font-medium uppercase tracking-wider hover:border-ink disabled:opacity-50"
+      className="mt-5 border border-line/20 px-6 py-3 text-xs font-medium uppercase tracking-wider hover:border-line disabled:opacity-50"
     >
       {pending ? "Confirming…" : "Simulate payment confirmation (demo)"}
     </button>

@@ -12,10 +12,10 @@ export default async function AdminCustomersPage() {
     <div>
       <h1 className="font-display text-3xl">Customers</h1>
       <p className="mt-1 text-sm text-stone">{users.length} registered accounts</p>
-      <div className="mt-6 overflow-x-auto border border-ink/10 bg-white">
+      <div className="mt-6 overflow-x-auto border border-line/10 bg-surface">
         <table className="w-full min-w-[650px] text-left text-sm">
-          <thead className="border-b border-ink/10 bg-cream/40 text-[10px] uppercase tracking-wider text-stone"><tr><th className="px-4 py-3">Name</th><th className="px-4 py-3">Email</th><th className="px-4 py-3">Phone</th><th className="px-4 py-3">Orders</th><th className="px-4 py-3">Roles</th><th className="px-4 py-3">Joined</th></tr></thead>
-          <tbody className="divide-y divide-ink/10">
+          <thead className="border-b border-line/10 bg-cream/40 text-[10px] uppercase tracking-wider text-stone"><tr><th className="px-4 py-3">Name</th><th className="px-4 py-3">Email</th><th className="px-4 py-3">Phone</th><th className="px-4 py-3">Orders</th><th className="px-4 py-3">Roles</th><th className="px-4 py-3">Joined</th></tr></thead>
+          <tbody className="divide-y divide-line/10">
             {withCounts.map((user) => (
               <tr key={user.id}>
                 <td className="px-4 py-3 font-medium">{user.name}</td>

@@ -44,17 +44,17 @@ export function ProductManager({
         </button>
       </div>
 
-      <div className="mb-5 flex max-w-sm items-center gap-2 border border-ink/15 bg-white px-3">
+      <div className="mb-5 flex max-w-sm items-center gap-2 border border-line/15 bg-surface px-3">
         <Search className="h-4 w-4 text-stone" />
         <input value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Search products…" className="w-full bg-transparent py-3 text-sm outline-none" />
       </div>
 
-      <div className={cn("overflow-x-auto border border-ink/10 bg-white", pending && "opacity-60")}>
+      <div className={cn("overflow-x-auto border border-line/10 bg-surface", pending && "opacity-60")}>
         <table className="w-full min-w-[760px] text-left text-sm">
-          <thead className="border-b border-ink/10 bg-cream/40 text-[10px] uppercase tracking-wider text-stone">
+          <thead className="border-b border-line/10 bg-cream/40 text-[10px] uppercase tracking-wider text-stone">
             <tr><th className="px-4 py-3 font-medium">Product</th><th className="px-4 py-3 font-medium">Category</th><th className="px-4 py-3 font-medium">Price</th><th className="px-4 py-3 font-medium">Stock</th><th className="px-4 py-3 font-medium">Status</th><th className="px-4 py-3 text-right font-medium">Actions</th></tr>
           </thead>
-          <tbody className="divide-y divide-ink/10">
+          <tbody className="divide-y divide-line/10">
             {filtered.map((product) => {
               const stock = product.variants.reduce((s, v) => s + v.stock, 0);
               const low = product.variants.some((v) => v.stock <= v.lowStockThreshold);

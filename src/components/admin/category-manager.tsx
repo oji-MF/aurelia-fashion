@@ -17,10 +17,10 @@ export function CategoryManager({ categories }: { categories: Category[] }) {
         <div><h1 className="font-display text-3xl">Categories</h1><p className="mt-1 text-sm text-stone">Organise your catalogue.</p></div>
         <button onClick={() => setEditing(null)} className="flex items-center gap-2 bg-ink px-5 py-3 text-xs font-semibold uppercase tracking-wider text-white hover:bg-accent"><Plus className="h-4 w-4" /> Add category</button>
       </div>
-      <div className="overflow-x-auto border border-ink/10 bg-white">
+      <div className="overflow-x-auto border border-line/10 bg-surface">
         <table className="w-full min-w-[600px] text-left text-sm">
-          <thead className="border-b border-ink/10 bg-cream/40 text-[10px] uppercase tracking-wider text-stone"><tr><th className="px-4 py-3">Name</th><th className="px-4 py-3">Parent</th><th className="px-4 py-3">Order</th><th className="px-4 py-3">Status</th><th className="px-4 py-3 text-right">Actions</th></tr></thead>
-          <tbody className="divide-y divide-ink/10">
+          <thead className="border-b border-line/10 bg-cream/40 text-[10px] uppercase tracking-wider text-stone"><tr><th className="px-4 py-3">Name</th><th className="px-4 py-3">Parent</th><th className="px-4 py-3">Order</th><th className="px-4 py-3">Status</th><th className="px-4 py-3 text-right">Actions</th></tr></thead>
+          <tbody className="divide-y divide-line/10">
             {categories.map((cat) => (
               <tr key={cat.id}>
                 <td className="px-4 py-3"><div className="flex items-center gap-3"><div className="relative h-10 w-10 overflow-hidden bg-cream">{cat.image && <Image src={cat.image} alt="" fill sizes="40px" className="object-cover" />}</div><div><p className="font-medium">{cat.name}</p><p className="text-[11px] text-stone">/{cat.slug}</p></div></div></td>

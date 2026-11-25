@@ -33,12 +33,12 @@ export default async function AdminDashboard({
     <div className="space-y-8">
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div><h1 className="font-display text-3xl">Overview</h1><p className="mt-1 text-sm text-stone">A snapshot of your store's performance.</p></div>
-        <div className="flex items-center gap-1 border border-ink/15 bg-white p-1">
+        <div className="flex items-center gap-1 border border-line/15 bg-surface p-1">
           {[7, 30, 90].map((days) => (
             <Link
               key={days}
               href={`/admin?range=${days}`}
-              className={`px-3 py-1.5 text-xs ${range === days ? "bg-ink text-white" : "text-stone hover:text-ink"}`}
+              className={`px-3 py-1.5 text-xs ${range === days ? "bg-ink text-white" : "text-stone hover:text-fg"}`}
             >
               {days}d
             </Link>
@@ -48,7 +48,7 @@ export default async function AdminDashboard({
 
       <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
         {cards.map(({ label, value, icon: Icon, note }) => (
-          <div key={label} className="border border-ink/10 bg-white p-5">
+          <div key={label} className="border border-line/10 bg-surface p-5">
             <div className="flex items-start justify-between"><Icon className="h-5 w-5 text-accent" /><ArrowUpRight className="h-4 w-4 text-stone" /></div>
             <p className="mt-5 font-display text-3xl">{value}</p>
             <p className="mt-1 text-xs font-medium">{label}</p>
@@ -58,22 +58,22 @@ export default async function AdminDashboard({
       </div>
 
       <div className="grid gap-6 xl:grid-cols-[1.6fr_1fr]">
-        <section className="border border-ink/10 bg-white p-6">
+        <section className="border border-line/10 bg-surface p-6">
           <div className="mb-6 flex items-center justify-between"><h2 className="font-display text-xl">Revenue over time</h2><span className="text-[11px] text-stone">GHS</span></div>
           <RevenueChart data={stats.revenueSeries} />
         </section>
-        <section className="border border-ink/10 bg-white p-6">
+        <section className="border border-line/10 bg-surface p-6">
           <h2 className="mb-6 font-display text-xl">Order trends</h2>
           <OrdersChart data={stats.revenueSeries} />
         </section>
       </div>
 
       <div className="grid gap-6 xl:grid-cols-[1fr_1fr]">
-        <section className="border border-ink/10 bg-white p-6">
+        <section className="border border-line/10 bg-surface p-6">
           <h2 className="mb-6 font-display text-xl">Best-selling products</h2>
           <ProductPerformanceChart data={stats.topProducts} />
         </section>
-        <section className="border border-ink/10 bg-white p-6">
+        <section className="border border-line/10 bg-surface p-6">
           <h2 className="mb-6 font-display text-xl">Order status</h2>
           <div className="space-y-3">
             {stats.statusBreakdown.map(({ status, count }) => (
@@ -84,7 +84,7 @@ export default async function AdminDashboard({
               </div>
             ))}
           </div>
-          <div className="mt-6 grid grid-cols-3 gap-3 border-t border-ink/10 pt-5 text-center">
+          <div className="mt-6 grid grid-cols-3 gap-3 border-t border-line/10 pt-5 text-center">
             <div><p className="font-display text-xl">{stats.completedOrders}</p><p className="text-[10px] text-stone">Delivered</p></div>
             <div><p className="font-display text-xl">{stats.pendingOrders}</p><p className="text-[10px] text-stone">Pending</p></div>
             <div><p className="font-display text-xl">{stats.cancelledOrders}</p><p className="text-[10px] text-stone">Cancelled</p></div>
@@ -93,10 +93,10 @@ export default async function AdminDashboard({
       </div>
 
       <div className="grid gap-6 xl:grid-cols-[1.4fr_1fr]">
-        <section className="border border-ink/10 bg-white p-6">
+        <section className="border border-line/10 bg-surface p-6">
           <div className="mb-5 flex items-center justify-between"><h2 className="font-display text-xl">Recent orders</h2><Link href="/admin/orders" className="text-xs text-accent underline">View all</Link></div>
           {orders.length ? (
-            <div className="divide-y divide-ink/10">
+            <div className="divide-y divide-line/10">
               {orders.map((order) => (
                 <Link key={order.id} href={`/admin/orders/${order.id}`} className="flex items-center justify-between py-3 hover:text-accent">
                   <div><p className="text-sm font-medium">{order.orderNumber}</p><p className="text-[11px] text-stone">{order.customerName} · {formatDate(order.createdAt)}</p></div>
@@ -106,20 +106,20 @@ export default async function AdminDashboard({
             </div>
           ) : <p className="py-8 text-center text-sm text-stone">No orders yet. Place a test order to see it here.</p>}
         </section>
-        <section className="border border-ink/10 bg-white p-6">
+        <section className="border border-line/10 bg-surface p-6">
           <h2 className="mb-5 font-display text-xl">Store health</h2>
           <div className="space-y-4">
-            <div className="flex items-center justify-between border-b border-ink/10 pb-3"><span className="text-sm text-stone">Low-stock variants</span><span className="flex items-center gap-2 text-sm font-medium"><AlertTriangle className="h-4 w-4 text-amber-500" />{stats.lowStock}</span></div>
-            <div className="flex items-center justify-between border-b border-ink/10 pb-3"><span className="text-sm text-stone">Average order value</span><span className="text-sm font-medium">{formatMoney(stats.averageOrderValue)}</span></div>
-            <div className="flex items-center justify-between border-b border-ink/10 pb-3"><span className="text-sm text-stone">Currency</span><span className="text-sm font-medium">{settings.currency}</span></div>
+            <div className="flex items-center justify-between border-b border-line/10 pb-3"><span className="text-sm text-stone">Low-stock variants</span><span className="flex items-center gap-2 text-sm font-medium"><AlertTriangle className="h-4 w-4 text-amber-500" />{stats.lowStock}</span></div>
+            <div className="flex items-center justify-between border-b border-line/10 pb-3"><span className="text-sm text-stone">Average order value</span><span className="text-sm font-medium">{formatMoney(stats.averageOrderValue)}</span></div>
+            <div className="flex items-center justify-between border-b border-line/10 pb-3"><span className="text-sm text-stone">Currency</span><span className="text-sm font-medium">{settings.currency}</span></div>
             <div className="flex items-center justify-between"><span className="text-sm text-stone">Payment provider</span><span className="text-sm font-medium">Paystack</span></div>
           </div>
-          <div className="mt-6 border-t border-ink/10 pt-5">
+          <div className="mt-6 border-t border-line/10 pt-5">
             <h3 className="eyebrow mb-3 text-stone">Recent activity</h3>
             {logs.length ? (
               <ul className="space-y-2">
                 {logs.map((log) => (
-                  <li key={log.id} className="text-[11px] text-stone"><strong className="font-medium text-ink">{log.actorEmail}</strong> {log.action} {log.entity} · {formatDate(log.createdAt)}</li>
+                  <li key={log.id} className="text-[11px] text-stone"><strong className="font-medium text-fg">{log.actorEmail}</strong> {log.action} {log.entity} · {formatDate(log.createdAt)}</li>
                 ))}
               </ul>
             ) : <p className="text-xs text-stone">No activity recorded yet.</p>}

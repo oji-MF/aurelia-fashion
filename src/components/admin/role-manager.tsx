@@ -28,11 +28,11 @@ export function RoleManager({ users, roles }: { users: User[]; roles: string[] }
         {users.map((user) => {
           const current = selected[user.id] || user.roles;
           return (
-            <div key={user.id} className="border border-ink/10 bg-white p-5">
+            <div key={user.id} className="border border-line/10 bg-surface p-5">
               <div className="flex flex-wrap items-center justify-between gap-3"><div><p className="font-medium">{user.name}</p><p className="text-xs text-stone">{user.email}</p></div><span className="text-[10px] uppercase tracking-wider text-stone">{current.join(", ").replace(/_/g, " ")}</span></div>
               <div className={cn("mt-4 flex flex-wrap gap-2", pending && "opacity-60")}>
                 {roles.map((role) => (
-                  <button key={role} onClick={() => toggle(user.id, role as Role, current)} className={cn("rounded-full border px-3 py-1.5 text-[11px] capitalize transition-colors", current.includes(role as Role) ? "border-ink bg-ink text-white" : "border-ink/15 hover:border-ink")}>
+                  <button key={role} onClick={() => toggle(user.id, role as Role, current)} className={cn("rounded-full border px-3 py-1.5 text-[11px] capitalize transition-colors", current.includes(role as Role) ? "border-line bg-ink text-white" : "border-line/15 hover:border-line")}>
                     {role.replace(/_/g, " ")}
                   </button>
                 ))}

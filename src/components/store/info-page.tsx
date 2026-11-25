@@ -24,7 +24,7 @@ export function InfoPage({
           </section>
         ))}
       </div>
-      <div className="mt-16 border-t border-ink/10 pt-8">
+      <div className="mt-16 border-t border-line/10 pt-8">
         <p className="text-sm text-stone">Still have a question? <Link href="/contact" className="text-accent underline underline-offset-4">Get in touch</Link>.</p>
       </div>
     </div>

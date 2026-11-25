@@ -23,7 +23,7 @@ export function AddressManager({ addresses }: { addresses: Address[] }) {
       </div>
 
       {open && (
-        <form action={action} className="mb-8 grid gap-4 border border-ink/10 bg-white/60 p-6 sm:grid-cols-2">
+        <form action={action} className="mb-8 grid gap-4 border border-line/10 bg-surface/60 p-6 sm:grid-cols-2">
           <label className="block"><span className="label">Label</span><input name="label" required placeholder="Home, Office…" className="input" /></label>
           <label className="block"><span className="label">Full name</span><input name="fullName" required className="input" /></label>
           <label className="block"><span className="label">Phone</span><input name="phone" required className="input" /></label>
@@ -43,7 +43,7 @@ export function AddressManager({ addresses }: { addresses: Address[] }) {
       {addresses.length ? (
         <div className="grid gap-4 sm:grid-cols-2">
           {addresses.map((address) => (
-            <div key={address.id} className="border border-ink/10 bg-white/60 p-5">
+            <div key={address.id} className="border border-line/10 bg-surface/60 p-5">
               <div className="flex items-start justify-between">
                 <p className="text-sm font-medium">{address.label} {address.isDefault && <span className="ml-2 rounded-full bg-cream px-2 py-0.5 text-[9px] uppercase tracking-wider text-stone">Default</span>}</p>
                 <button
@@ -51,13 +51,13 @@ export function AddressManager({ addresses }: { addresses: Address[] }) {
                   aria-label="Delete address" className="text-stone hover:text-accent"
                 ><Trash2 className="h-4 w-4" /></button>
               </div>
-              <p className="mt-3 text-sm text-charcoal">{address.fullName}</p>
+              <p className="mt-3 text-sm text-fg">{address.fullName}</p>
               <p className="mt-1 text-xs text-stone">{address.street}, {address.city}, {address.region}, {address.country}</p>
               <p className="mt-1 text-xs text-stone">{address.phone}</p>
             </div>
           ))}
         </div>
-      ) : <p className="border border-dashed border-ink/15 p-10 text-center text-sm text-stone">No saved addresses yet.</p>}
+      ) : <p className="border border-dashed border-line/15 p-10 text-center text-sm text-stone">No saved addresses yet.</p>}
     </div>
   );
 }

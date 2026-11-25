@@ -27,12 +27,12 @@ export default async function AccountLayout({ children }: { children: React.Reac
         <aside>
           <nav className="space-y-1">
             {links.map(({ href, label, icon: Icon }) => (
-              <Link key={href} href={href} className="flex items-center gap-3 px-3 py-3 text-sm text-charcoal transition-colors hover:bg-cream hover:text-accent">
+              <Link key={href} href={href} className="flex items-center gap-3 px-3 py-3 text-sm text-fg transition-colors hover:bg-cream hover:text-accent">
                 <Icon className="h-4 w-4" /> {label}
               </Link>
             ))}
           </nav>
-          <form action={logoutAction} className="mt-6 border-t border-ink/10 pt-6">
+          <form action={logoutAction} className="mt-6 border-t border-line/10 pt-6">
             <button className="flex items-center gap-3 px-3 py-3 text-sm text-stone hover:text-accent"><LogOut className="h-4 w-4" /> Sign out</button>
           </form>
         </aside>

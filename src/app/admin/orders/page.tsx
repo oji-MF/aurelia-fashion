@@ -11,10 +11,10 @@ export default async function AdminOrdersPage() {
     <div>
       <h1 className="font-display text-3xl">Orders</h1>
       <p className="mt-1 text-sm text-stone">{orders.length} orders in total</p>
-      <div className="mt-6 overflow-x-auto border border-ink/10 bg-white">
+      <div className="mt-6 overflow-x-auto border border-line/10 bg-surface">
         <table className="w-full min-w-[800px] text-left text-sm">
-          <thead className="border-b border-ink/10 bg-cream/40 text-[10px] uppercase tracking-wider text-stone"><tr><th className="px-4 py-3">Order</th><th className="px-4 py-3">Customer</th><th className="px-4 py-3">Date</th><th className="px-4 py-3">Total</th><th className="px-4 py-3">Payment</th><th className="px-4 py-3">Status</th><th className="px-4 py-3 text-right">View</th></tr></thead>
-          <tbody className="divide-y divide-ink/10">
+          <thead className="border-b border-line/10 bg-cream/40 text-[10px] uppercase tracking-wider text-stone"><tr><th className="px-4 py-3">Order</th><th className="px-4 py-3">Customer</th><th className="px-4 py-3">Date</th><th className="px-4 py-3">Total</th><th className="px-4 py-3">Payment</th><th className="px-4 py-3">Status</th><th className="px-4 py-3 text-right">View</th></tr></thead>
+          <tbody className="divide-y divide-line/10">
             {orders.map((order) => (
               <tr key={order.id} className="hover:bg-cream/30">
                 <td className="px-4 py-3 font-medium">{order.orderNumber}</td>

@@ -47,8 +47,8 @@ export default function ContactPage() {
               <div><p className="eyebrow text-stone">{label}</p><p className="mt-1 text-sm">{value}</p></div>
             </div>
           ))}
-          <div className="border-t border-ink/10 pt-6 text-xs leading-relaxed text-stone">
-            <p className="font-medium text-ink">Support hours</p>
+          <div className="border-t border-line/10 pt-6 text-xs leading-relaxed text-stone">
+            <p className="font-medium text-fg">Support hours</p>
             <p className="mt-1">Monday–Friday, 9am–6pm GMT<br />Saturday, 10am–2pm GMT</p>
           </div>
         </div>

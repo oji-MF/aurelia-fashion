@@ -21,9 +21,14 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true },
 };
 
+const themeScript = `(function(){try{var t=localStorage.getItem('aurelia-theme');var d=t==='dark'||(!t&&window.matchMedia('(prefers-color-scheme: dark)').matches);if(d)document.documentElement.classList.add('dark');}catch(e){}})();`;
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+      </head>
       <body>
         <ToastProvider>{children}</ToastProvider>
       </body>

@@ -2,7 +2,7 @@ import { ID } from "node-appwrite";
 import { appwriteConfig, isAppwriteConfigured } from "@/lib/config";
 import { createAdminClient } from "@/lib/appwrite/server";
 import { getStore, mutateStore } from "@/lib/demo/store";
-import { docToProduct, docToCategory, productToDoc } from "./serialize";
+import { productToDoc } from "./serialize";
 import { getAllOrders } from "./orders";
 import { slugify } from "@/lib/utils";
 import type {

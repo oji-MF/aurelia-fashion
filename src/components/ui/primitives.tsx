@@ -24,10 +24,10 @@ export function Button({
     size === "md" && "px-6 py-3 text-sm",
     size === "lg" && "px-8 py-4 text-sm",
     variant === "primary" && "bg-ink text-white hover:bg-accent",
-    variant === "outline" && "border border-ink/20 text-ink hover:border-ink hover:bg-ink hover:text-white",
-    variant === "ghost" && "text-ink hover:text-accent",
-    variant === "light" && "bg-white text-ink hover:bg-cream",
-    variant === "dark" && "bg-white/10 text-white backdrop-blur border border-white/30 hover:bg-white hover:text-ink",
+    variant === "outline" && "border border-line/20 text-fg hover:border-line hover:bg-ink hover:text-white",
+    variant === "ghost" && "text-fg hover:text-accent",
+    variant === "light" && "bg-surface text-fg hover:bg-cream",
+    variant === "dark" && "bg-surface/10 text-white backdrop-blur border border-white/30 hover:bg-surface hover:text-fg",
     fullWidth && "w-full",
     className,
   );
@@ -58,7 +58,7 @@ export function Badge({
     <span
       className={cn(
         "inline-flex items-center rounded-full px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider",
-        tone === "neutral" && "bg-cream text-charcoal",
+        tone === "neutral" && "bg-cream text-fg",
         tone === "sale" && "bg-accent text-white",
         tone === "success" && "bg-success/10 text-success",
         tone === "warning" && "bg-amber-100 text-amber-800",
@@ -87,7 +87,7 @@ export function SectionHeading({
     <div className={cn("mb-8 flex flex-wrap items-end justify-between gap-4", align === "center" && "flex-col items-center text-center")}>
       <div>
         {eyebrow && <p className={cn("eyebrow mb-3", light ? "text-white/60" : "text-accent")}>{eyebrow}</p>}
-        <h2 className={cn("font-display text-3xl md:text-4xl", light ? "text-white" : "text-ink")}>{title}</h2>
+        <h2 className={cn("font-display text-3xl md:text-4xl", light ? "text-white" : "text-fg")}>{title}</h2>
       </div>
       {action}
     </div>
@@ -104,7 +104,7 @@ export function EmptyState({
   action?: ReactNode;
 }) {
   return (
-    <div className="flex flex-col items-center justify-center rounded-sm border border-dashed border-ink/15 bg-white/60 px-6 py-20 text-center">
+    <div className="flex flex-col items-center justify-center rounded-sm border border-dashed border-line/15 bg-surface/60 px-6 py-20 text-center">
       <h3 className="font-display text-2xl">{title}</h3>
       <p className="mt-3 max-w-md text-sm text-stone">{description}</p>
       {action && <div className="mt-6">{action}</div>}
@@ -127,5 +127,5 @@ export function SkeletonGrid({ count = 8 }: { count?: number }) {
 }
 
 export function Divider({ className }: { className?: string }) {
-  return <div className={cn("h-px w-full bg-ink/10", className)} />;
+  return <div className={cn("h-px w-full bg-line/10", className)} />;
 }

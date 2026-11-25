@@ -107,8 +107,8 @@ export function CheckoutForm({
               >
                 {i < step ? <Check className="h-3.5 w-3.5" /> : i + 1}
               </button>
-              <span className={cn("hidden text-[11px] sm:block", i === step ? "font-semibold text-ink" : "text-stone")}>{label}</span>
-              {i < steps.length - 1 && <span className={cn("h-px flex-1", i < step ? "bg-success" : "bg-ink/15")} />}
+              <span className={cn("hidden text-[11px] sm:block", i === step ? "font-semibold text-fg" : "text-stone")}>{label}</span>
+              {i < steps.length - 1 && <span className={cn("h-px flex-1", i < step ? "bg-success" : "bg-line/15")} />}
             </li>
           ))}
         </ol>
@@ -185,9 +185,9 @@ export function CheckoutForm({
                   key={option.id}
                   type="button"
                   onClick={() => setProvider(option.id)}
-                  className={cn("flex w-full items-center gap-4 border p-4 text-left transition-colors", provider === option.id ? "border-ink bg-cream/40" : "border-ink/15 hover:border-ink/40")}
+                  className={cn("flex w-full items-center gap-4 border p-4 text-left transition-colors", provider === option.id ? "border-line bg-cream/40" : "border-line/15 hover:border-line/40")}
                 >
-                  <span className={cn("flex h-4 w-4 items-center justify-center rounded-full border", provider === option.id ? "border-ink" : "border-ink/30")}>
+                  <span className={cn("flex h-4 w-4 items-center justify-center rounded-full border", provider === option.id ? "border-line" : "border-line/30")}>
                     {provider === option.id && <span className="h-2 w-2 rounded-full bg-ink" />}
                   </span>
                   <span className="flex-1">
@@ -219,7 +219,7 @@ export function CheckoutForm({
 
       {/* Summary */}
       <aside className="lg:pt-1">
-        <div className="border border-ink/10 bg-white/60 p-6 lg:sticky lg:top-28">
+        <div className="border border-line/10 bg-surface/60 p-6 lg:sticky lg:top-28">
           <h2 className="font-display text-xl">Your order</h2>
           <div className="mt-5 max-h-72 space-y-4 overflow-y-auto">
             {items.map((item) => (
@@ -236,10 +236,10 @@ export function CheckoutForm({
               </div>
             ))}
           </div>
-          <div className="mt-5 space-y-2 border-t border-ink/10 pt-5 text-sm">
+          <div className="mt-5 space-y-2 border-t border-line/10 pt-5 text-sm">
             <div className="flex justify-between"><span className="text-stone">Subtotal</span><span>{formatMoney(subtotal)}</span></div>
             <div className="flex justify-between"><span className="text-stone">Delivery</span><span>{shipping === 0 ? "Complimentary" : formatMoney(shipping)}</span></div>
-            <div className="flex justify-between border-t border-ink/10 pt-3 font-medium"><span>Total</span><span>{formatMoney(subtotal + shipping)}</span></div>
+            <div className="flex justify-between border-t border-line/10 pt-3 font-medium"><span>Total</span><span>{formatMoney(subtotal + shipping)}</span></div>
           </div>
           <p className="mt-4 text-[11px] leading-relaxed text-stone">All prices and stock are re-verified on the server before payment is captured.</p>
         </div>
@@ -269,7 +269,7 @@ function Input({
       onChange={(e) => onChange(e.target.value)}
       placeholder={placeholder}
       autoComplete={autoComplete}
-      className="w-full border border-ink/15 bg-white px-4 py-3 text-sm outline-none transition-colors focus:border-accent"
+      className="w-full border border-line/15 bg-surface px-4 py-3 text-sm outline-none transition-colors focus:border-accent"
     />
   );
 }
@@ -279,9 +279,9 @@ function ShippingOption({ active, onClick, title, detail, price }: { active: boo
     <button
       type="button"
       onClick={onClick}
-      className={cn("flex w-full items-center gap-4 border p-4 text-left transition-colors", active ? "border-ink bg-cream/40" : "border-ink/15 hover:border-ink/40")}
+      className={cn("flex w-full items-center gap-4 border p-4 text-left transition-colors", active ? "border-line bg-cream/40" : "border-line/15 hover:border-line/40")}
     >
-      <span className={cn("flex h-4 w-4 items-center justify-center rounded-full border", active ? "border-ink" : "border-ink/30")}>
+      <span className={cn("flex h-4 w-4 items-center justify-center rounded-full border", active ? "border-line" : "border-line/30")}>
         {active && <span className="h-2 w-2 rounded-full bg-ink" />}
       </span>
       <span className="flex-1"><span className="block text-sm font-medium">{title}</span><span className="block text-xs text-stone">{detail}</span></span>
@@ -300,7 +300,7 @@ function NextButton({ onClick, label }: { onClick: () => void; label: string }) 
 
 function BackButton({ onClick }: { onClick: () => void }) {
   return (
-    <button type="button" onClick={onClick} className="mt-8 flex items-center gap-2 border border-ink/20 px-6 py-4 text-xs font-medium uppercase tracking-wider hover:border-ink">
+    <button type="button" onClick={onClick} className="mt-8 flex items-center gap-2 border border-line/20 px-6 py-4 text-xs font-medium uppercase tracking-wider hover:border-line">
       <ChevronLeft className="h-4 w-4" /> Back
     </button>
   );

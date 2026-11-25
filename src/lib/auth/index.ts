@@ -1,5 +1,5 @@
 import { ID } from "node-appwrite";
-import { appwriteConfig, isAppwriteConfigured } from "@/lib/config";
+import { isAppwriteConfigured } from "@/lib/config";
 import { createAdminClient, createSessionClient } from "@/lib/appwrite/server";
 import { getStore, mutateStore } from "@/lib/demo/store";
 import { hashPassword, verifyPassword } from "./password";

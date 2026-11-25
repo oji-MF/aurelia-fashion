@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import { CataloguePage } from "@/components/catalogue/catalogue-page";
-import { getBrands, getBrandBySlug } from "@/lib/data/catalogue";
+import { getBrandBySlug } from "@/lib/data/catalogue";
 
 export default async function BrandPage({
   params,
@@ -12,7 +12,6 @@ export default async function BrandPage({
   const { slug } = await params;
   const brand = await getBrandBySlug(slug);
   if (!brand) notFound();
-  const brands = await getBrands();
   return (
     <CataloguePage
       title={brand.name}

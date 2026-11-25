@@ -1,7 +1,7 @@
 import { createHmac, timingSafeEqual } from "node:crypto";
 import { paystackConfig, siteConfig } from "@/lib/config";
 import { formatMoney, randomString } from "@/lib/utils";
-import { getOrderById, markOrderPaid, setPaymentReference } from "./orders";
+import { markOrderPaid, setPaymentReference } from "./orders";
 import type { Order } from "@/lib/types";
 
 const PAYSTACK_API = "https://api.paystack.co";

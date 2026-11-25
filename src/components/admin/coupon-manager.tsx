@@ -13,10 +13,10 @@ export function CouponManager({ coupons }: { coupons: Coupon[] }) {
   return (
     <div>
       <div className="mb-6 flex items-center justify-between"><div><h1 className="font-display text-3xl">Promotions</h1><p className="mt-1 text-sm text-stone">Discount codes and campaigns.</p></div><button onClick={() => setEditing(null)} className="flex items-center gap-2 bg-ink px-5 py-3 text-xs font-semibold uppercase tracking-wider text-white hover:bg-accent"><Plus className="h-4 w-4" /> New code</button></div>
-      <div className="overflow-x-auto border border-ink/10 bg-white">
+      <div className="overflow-x-auto border border-line/10 bg-surface">
         <table className="w-full min-w-[700px] text-left text-sm">
-          <thead className="border-b border-ink/10 bg-cream/40 text-[10px] uppercase tracking-wider text-stone"><tr><th className="px-4 py-3">Code</th><th className="px-4 py-3">Type</th><th className="px-4 py-3">Value</th><th className="px-4 py-3">Usage</th><th className="px-4 py-3">Valid until</th><th className="px-4 py-3">Status</th><th className="px-4 py-3 text-right">Actions</th></tr></thead>
-          <tbody className="divide-y divide-ink/10">
+          <thead className="border-b border-line/10 bg-cream/40 text-[10px] uppercase tracking-wider text-stone"><tr><th className="px-4 py-3">Code</th><th className="px-4 py-3">Type</th><th className="px-4 py-3">Value</th><th className="px-4 py-3">Usage</th><th className="px-4 py-3">Valid until</th><th className="px-4 py-3">Status</th><th className="px-4 py-3 text-right">Actions</th></tr></thead>
+          <tbody className="divide-y divide-line/10">
             {coupons.map((coupon) => <tr key={coupon.id}><td className="px-4 py-3 font-medium">{coupon.code}</td><td className="px-4 py-3 text-xs capitalize text-stone">{coupon.type.replace(/_/g, " ")}</td><td className="px-4 py-3">{coupon.type === "percentage" ? `${coupon.value}%` : coupon.type === "fixed" ? `GH₵${(coupon.value / 100).toFixed(2)}` : "Free delivery"}</td><td className="px-4 py-3 text-xs">{coupon.usedCount} / {coupon.usageLimit}</td><td className="px-4 py-3 text-xs text-stone">{new Date(coupon.endAt).toLocaleDateString("en-GB")}</td><td className="px-4 py-3"><span className={`rounded-full px-2 py-1 text-[10px] uppercase ${coupon.active ? "bg-success/10 text-success" : "bg-cream text-stone"}`}>{coupon.active ? "Active" : "Inactive"}</span></td><td className="px-4 py-3"><div className="flex justify-end gap-2"><button onClick={() => setEditing(coupon)} className="text-xs text-accent underline">Edit</button><DeleteButton id={coupon.id} /></div></td></tr>)}
           </tbody>
         </table>

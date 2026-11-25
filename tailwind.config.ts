@@ -1,16 +1,20 @@
 import type { Config } from "tailwindcss";
 
 const config: Config = {
+  darkMode: "class",
   content: ["./src/**/*.{js,ts,jsx,tsx,mdx}"],
   theme: {
     extend: {
       colors: {
-        ink: "#14110f",
+        ink: "rgb(var(--c-ink) / <alpha-value>)",
+        fg: "rgb(var(--c-fg) / <alpha-value>)",
+        paper: "rgb(var(--c-paper) / <alpha-value>)",
+        surface: "rgb(var(--c-surface) / <alpha-value>)",
+        cream: "rgb(var(--c-cream) / <alpha-value>)",
+        line: "rgb(var(--c-line) / <alpha-value>)",
+        stone: "rgb(var(--c-stone) / <alpha-value>)",
         charcoal: "#26221f",
-        paper: "#faf8f5",
-        cream: "#f2ede6",
-        stone: "#8c857c",
-        accent: "#b4533a",
+        accent: "rgb(var(--c-accent) / <alpha-value>)",
         "accent-dark": "#8f3f2a",
         success: "#2f6f4e",
       },
@@ -27,13 +31,9 @@ const config: Config = {
           "0%": { opacity: "0", transform: "translateY(12px)" },
           "100%": { opacity: "1", transform: "translateY(0)" },
         },
-        shimmer: {
-          "100%": { transform: "translateX(100%)" },
-        },
+        shimmer: { "100%": { transform: "translateX(100%)" } },
       },
-      animation: {
-        "fade-up": "fade-up 0.5s ease-out both",
-      },
+      animation: { "fade-up": "fade-up 0.5s ease-out both" },
     },
   },
   plugins: [],

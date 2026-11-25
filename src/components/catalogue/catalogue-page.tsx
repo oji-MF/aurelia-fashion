@@ -78,7 +78,7 @@ export async function CataloguePage({
         {breadcrumbs.map((crumb, i) => (
           <span key={i} className="flex items-center gap-1.5">
             <ChevronRight className="h-3 w-3" />
-            {crumb.href ? <Link href={crumb.href} className="hover:text-accent">{crumb.label}</Link> : <span className="text-ink">{crumb.label}</span>}
+            {crumb.href ? <Link href={crumb.href} className="hover:text-accent">{crumb.label}</Link> : <span className="text-fg">{crumb.label}</span>}
           </span>
         ))}
       </nav>

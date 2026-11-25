@@ -27,7 +27,7 @@ export function OrderStatusControl({ orderId, status }: { orderId: string; statu
           toast(result.message, result.ok ? "success" : "error");
         });
       }}
-      className="border border-ink/15 bg-white px-2 py-1.5 text-[11px] capitalize outline-none disabled:opacity-50"
+      className="border border-line/15 bg-surface px-2 py-1.5 text-[11px] capitalize outline-none disabled:opacity-50"
     >
       {statuses.map((s) => <option key={s} value={s}>{s.replace(/_/g, " ")}</option>)}
     </select>
@@ -37,5 +37,5 @@ export function OrderStatusControl({ orderId, status }: { orderId: string; statu
 export function RefundButton({ orderId }: { orderId: string }) {
   const [pending, startTransition] = useTransition();
   const { toast } = useToast();
-  return <button disabled={pending} onClick={() => { if (!confirm("Issue a refund for this order?")) return; startTransition(async () => { const r = await refundAction(orderId); toast(r.message, r.ok ? "success" : "error"); }); }} className="border border-ink/15 px-3 py-1.5 text-[11px] hover:border-accent hover:text-accent disabled:opacity-50">Refund</button>;
+  return <button disabled={pending} onClick={() => { if (!confirm("Issue a refund for this order?")) return; startTransition(async () => { const r = await refundAction(orderId); toast(r.message, r.ok ? "success" : "error"); }); }} className="border border-line/15 px-3 py-1.5 text-[11px] hover:border-accent hover:text-accent disabled:opacity-50">Refund</button>;
 }

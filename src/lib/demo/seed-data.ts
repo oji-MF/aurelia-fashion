@@ -228,11 +228,53 @@ const productSeeds: ProductSeed[] = [
   { name: "Eau de Parfum", brand: 2, category: "beauty", gender: "unisex", price: 32000, photo: 50, colours: [["50ml", "#d8c7a8"]], sizes: oneSize, material: "Fragrance", style: "Beauty", flags: ["featured"] },
 ];
 
+const extraProductSeeds: ProductSeed[] = [
+  { name: "Bias Cut Satin Dress", brand: 2, category: "dresses", gender: "women", price: 24900, compare: 31000, photo: 42, colours: [["Champagne", "#d8c7a8"],["Black", "#161616"]], material: "Silk satin", style: "Occasion", flags: ["newArrival", "featured"] },
+  { name: "Longline Waistcoat", brand: 1, category: "clothing", gender: "women", price: 19800, photo: 17, colours: [["Charcoal", "#33343a"],["Sand", "#c9b49a"]], material: "Wool blend", style: "Workwear", flags: ["trending"] },
+  { name: "Puff Sleeve Blouse", brand: 4, category: "tops", gender: "women", price: 13800, photo: 22, colours: [["White", "#f7f6f3"],["Blush", "#d9a8a0"]], material: "Cotton", style: "Everyday" },
+  { name: "Fine Rib Vest", brand: 5, category: "knitwear", gender: "women", price: 11800, photo: 18, colours: [["Cream", "#ece4d6"],["Black", "#161616"]], material: "Ribbed cotton", style: "Everyday" },
+  { name: "Pleated Wide Leg Trousers", brand: 0, category: "clothing", gender: "women", price: 23200, photo: 35, colours: [["Navy", "#1d2637"],["Stone", "#b8ab98"]], material: "Crepe", style: "Workwear", flags: ["newArrival"] },
+  { name: "Utility Cargo Trousers", brand: 6, category: "clothing", gender: "women", price: 17800, photo: 34, colours: [["Khaki", "#7c7a5c"],["Black", "#161616"]], material: "Cotton twill", style: "Streetwear" },
+  { name: "Washed Denim Jacket", brand: 6, category: "outerwear", gender: "women", price: 26500, compare: 32000, photo: 33, colours: [["Light Wash", "#8ba5c0"],["Dark Wash", "#3d4d6b"]], material: "Denim", style: "Everyday", flags: ["trending"] },
+  { name: "Knit Midi Skirt", brand: 5, category: "clothing", gender: "women", price: 15600, photo: 23, colours: [["Camel", "#a9825b"],["Charcoal", "#33343a"]], material: "Ribbed knit", style: "Everyday" },
+  { name: "Off Shoulder Top", brand: 9, category: "tops", gender: "women", price: 12500, photo: 24, colours: [["Black", "#161616"],["White", "#f7f6f3"]], material: "Jersey", style: "Partywear" },
+  { name: "Floor Length Evening Gown", brand: 9, category: "dresses", gender: "women", price: 46500, photo: 43, colours: [["Midnight", "#1c2340"],["Burgundy", "#6b2434"]], material: "Chiffon", style: "Occasion", flags: ["featured"] },
+  { name: "Tailored Shorts", brand: 0, category: "clothing", gender: "women", price: 13200, photo: 35, colours: [["Sand", "#c9b49a"],["Navy", "#1d2637"]], material: "Linen blend", style: "Summer" },
+  { name: "Cropped Denim Shirt", brand: 6, category: "tops", gender: "women", price: 14900, photo: 29, colours: [["Mid Blue", "#4a6b96"]], material: "Denim", style: "Streetwear" },
+
+  { name: "Slim Fit Oxford Shirt", brand: 0, category: "shirts", gender: "men", price: 15900, photo: 30, colours: [["White", "#f7f6f3"],["Navy", "#1d2637"]], material: "Cotton oxford", style: "Workwear", flags: ["trending"] },
+  { name: "Textured Knit Polo", brand: 5, category: "knitwear", gender: "men", price: 18500, photo: 30, colours: [["Charcoal", "#33343a"],["Ecru", "#e8dfcf"]], material: "Textured cotton", style: "Summer", flags: ["newArrival"] },
+  { name: "Relaxed Cotton Overshirt", brand: 5, category: "outerwear", gender: "men", price: 22500, compare: 28000, photo: 46, colours: [["Olive", "#5b6146"],["Navy", "#1d2637"]], material: "Cotton twill", style: "Everyday" },
+  { name: "Pleated Wool Trousers", brand: 1, category: "clothing", gender: "men", price: 24500, photo: 35, colours: [["Charcoal", "#33343a"]], material: "Wool", style: "Workwear" },
+  { name: "Printed Casual Shirt", brand: 8, category: "shirts", gender: "men", price: 14500, compare: 18000, photo: 31, colours: [["Floral", "#9d6f78"],["Blue", "#7e9ab1"]], material: "Viscose", style: "Summer" },
+  { name: "Zip Through Track Jacket", brand: 7, category: "sportswear", gender: "men", price: 21000, photo: 49, colours: [["Black", "#161616"],["Grey", "#8b8b8f"]], material: "Performance knit", style: "Sportswear", flags: ["newArrival"] },
+  { name: "Suede Bomber Jacket", brand: 1, category: "outerwear", gender: "men", price: 39500, photo: 17, colours: [["Cognac", "#8a542f"],["Olive", "#5b6146"]], material: "Suede", style: "Streetwear", flags: ["featured"] },
+  { name: "Cable Knit Sweater", brand: 5, category: "knitwear", gender: "men", price: 26500, photo: 18, colours: [["Cream", "#ece4d6"],["Navy", "#1d2637"]], material: "Wool blend", style: "Everyday" },
+  { name: "Straight Fit Chinos", brand: 0, category: "clothing", gender: "men", price: 16500, photo: 33, colours: [["Stone", "#b8ab98"],["Navy", "#1d2637"]], material: "Cotton twill", style: "Everyday", flags: ["trending"] },
+  { name: "Graphic Print Tee", brand: 8, category: "clothing", gender: "men", price: 7900, photo: 28, colours: [["White", "#f7f6f3"],["Black", "#161616"]], material: "Cotton jersey", style: "Streetwear" },
+
+  { name: "Suede Ankle Boots", brand: 1, category: "shoes", gender: "women", price: 32500, photo: 9, colours: [["Tan", "#a46d3f"],["Black", "#161616"]], sizes: shoeSizes, material: "Suede", style: "Everyday", flags: ["newArrival"] },
+  { name: "Strappy Sandals", brand: 2, category: "shoes", gender: "women", price: 19500, compare: 24500, photo: 10, colours: [["Nude", "#d6b49b"],["Black", "#161616"]], sizes: shoeSizes, material: "Leather", style: "Summer" },
+  { name: "Retro Court Sneakers", brand: 3, category: "shoes", gender: "unisex", price: 21500, photo: 11, colours: [["White", "#f7f6f3"],["Green", "#455e4a"]], sizes: shoeSizes, material: "Leather", style: "Everyday", flags: ["trending"] },
+  { name: "Chelsea Boots", brand: 1, category: "shoes", gender: "men", price: 35500, compare: 42000, photo: 9, colours: [["Black", "#161616"],["Brown", "#5b3a26"]], sizes: shoeSizes, material: "Leather", style: "Workwear", flags: ["featured"] },
+
+  { name: "Bucket Bag", brand: 4, category: "bags", gender: "women", price: 22500, photo: 16, colours: [["Sand", "#c9b49a"],["Black", "#161616"]], sizes: oneSize, material: "Leather", style: "Everyday", flags: ["newArrival"] },
+  { name: "Structured Clutch", brand: 2, category: "bags", gender: "women", price: 17500, photo: 15, colours: [["Black", "#161616"],["Gold", "#c9a227"]], sizes: oneSize, material: "Leather", style: "Occasion" },
+  { name: "Leather Backpack", brand: 6, category: "bags", gender: "unisex", price: 29500, photo: 14, colours: [["Black", "#161616"],["Tan", "#a46d3f"]], sizes: oneSize, material: "Leather", style: "Everyday" },
+
+  { name: "Layered Gold Necklace", brand: 3, category: "accessories", gender: "women", price: 11500, compare: 14500, photo: 13, colours: [["Gold", "#c9a227"]], sizes: oneSize, material: "Gold plated", style: "Everyday", flags: ["trending"] },
+  { name: "Leather Card Holder", brand: 1, category: "accessories", gender: "unisex", price: 8900, photo: 15, colours: [["Black", "#161616"],["Tan", "#a46d3f"]], sizes: oneSize, material: "Leather", style: "Everyday" },
+  { name: "Woven Straw Hat", brand: 4, category: "accessories", gender: "women", price: 10500, photo: 39, colours: [["Natural", "#c9b49a"]], sizes: oneSize, material: "Straw", style: "Summer" },
+  { name: "Gradient Sunglasses", brand: 8, category: "accessories", gender: "unisex", price: 13500, photo: 13, colours: [["Tortoise", "#6b4a2f"],["Black", "#161616"]], sizes: oneSize, material: "Acetate", style: "Summer", flags: ["newArrival"] },
+  { name: "Hydrating Face Cream", brand: 9, category: "beauty", gender: "women", price: 12500, photo: 50, colours: [["50ml", "#e8dfcf"]], sizes: oneSize, material: "Vegan formula", style: "Beauty" },
+  { name: "Everyday Body Lotion", brand: 9, category: "beauty", gender: "unisex", price: 7900, photo: 50, colours: [["250ml", "#e8dfcf"]], sizes: oneSize, material: "Cruelty-free", style: "Beauty" },
+];
+
 function buildProducts(categories: Category[], brands: Brand[]): Product[] {
   const categoryBySlug = new Map(categories.map((c) => [c.slug, c]));
   const brandById = new Map(brands.map((b, i) => [i, b]));
 
-  return productSeeds.map((seed, index) => {
+  return [...productSeeds, ...extraProductSeeds].map((seed, index) => {
     const category = categoryBySlug.get(seed.category) ?? categories[0];
     const brand = brandById.get(seed.brand) ?? brands[0];
     const sizes = seed.sizes ?? apparelSizes;
